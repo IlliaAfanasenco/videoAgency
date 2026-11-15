@@ -1,0 +1,61 @@
+import type { Messages } from "@/messages/de";
+import type { Locale } from "@/lib/i18n";
+import { contactInfo } from "@/data/contact";
+import { Heading } from "@/components/ui/SectionLabel";
+import { ContactForm } from "@/components/ui/ContactForm";
+
+export function ContactSection({ t, locale }: { t: Messages; locale: Locale }) {
+  const hasInfo = contactInfo.email || contactInfo.instagram;
+  return (
+    <section
+      id="contact"
+      className="mx-auto grid max-w-[1600px] gap-12 px-6 py-20 sm:px-10 lg:grid-cols-[1fr_1fr] lg:gap-24 lg:px-20 lg:py-36"
+    >
+      <div data-reveal>
+        <Heading className="text-[clamp(2.4rem,5.2vw,5.4rem)]">
+          {t.contact.title}
+        </Heading>
+        <p className="mt-8 max-w-md text-base leading-8 text-white/65">
+          {t.contact.text}
+        </p>
+        <p className="mt-8 text-lg font-light text-white/90">
+          {t.contact.slogan}
+        </p>
+        {hasInfo && (
+          <div className="mt-10 border-t border-white/12 pt-6 text-sm">
+            <p className="mb-3 text-[10px] tracking-[.2em] text-white/40">
+              {t.contact.direct.toUpperCase()}
+            </p>
+            <ul className="space-y-1">
+              {contactInfo.email && (
+                <li>
+                  <a
+                    href={`mailto:${contactInfo.email}`}
+                    className="inline-flex min-h-11 items-center underline-offset-4 hover:underline"
+                  >
+                    {contactInfo.email}
+                  </a>
+                </li>
+              )}
+              {contactInfo.instagram && (
+                <li>
+                  <a
+                    href={contactInfo.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center underline-offset-4 hover:underline"
+                  >
+                    {t.contact.instagram}
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
+      </div>
+      <div data-reveal>
+        <ContactForm t={t} locale={locale} />
+      </div>
+    </section>
+  );
+}

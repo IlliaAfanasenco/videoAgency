@@ -6,7 +6,18 @@ import { Logo } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
 import { gsap } from "@/lib/gsap";
 const anchors = ["top", "projects", "services", "about", "contact"];
-export function Header({ t, locale }: { t: Messages; locale: Locale }) {
+export function Header({
+  t,
+  locale,
+  path = "",
+}: {
+  t: Messages;
+  locale: Locale;
+  /** Sub-path of the current page (e.g. "/portfolio"); empty on the home page. */
+  path?: string;
+}) {
+  // Anchors resolve on the home page; from sub-pages they link back to it.
+  const base = path ? `/${locale}` : "";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const panel = useRef<HTMLDialogElement>(null);
@@ -65,7 +76,7 @@ export function Header({ t, locale }: { t: Messages; locale: Locale }) {
       {(["de", "en"] as const).map((l) => (
         <a
           key={l}
-          href={`/${l}`}
+          href={`/${l}${path}`}
           lang={l}
           hrefLang={l}
           aria-current={locale === l ? "page" : undefined}
@@ -85,14 +96,14 @@ export function Header({ t, locale }: { t: Messages; locale: Locale }) {
       className={`fixed inset-x-0 top-0 z-40 transition duration-500 ${scrolled ? "border-b border-white/10 bg-[#050505]/85 backdrop-blur-xl" : "bg-transparent"}`}
     >
       <div className="mx-auto flex h-20 max-w-[1600px] items-center justify-between px-6 sm:px-10 lg:px-16">
-        <a href="#top" aria-label="FRAME NO. 9 Home">
+        <a href={`${base}#top`} aria-label="FRAME NO. 9 Home">
           <Logo />
         </a>
         <nav aria-label={t.menu} className="hidden items-center gap-7 xl:flex">
           {t.nav.map((label, i) => (
             <a
               key={label}
-              href={`#${anchors[i]}`}
+              href={i === 3 ? `/${locale}/about` : `${base}#${anchors[i]}`}
               className="text-[11px] text-white/60 transition hover:text-white"
             >
               {label}
@@ -101,7 +112,10 @@ export function Header({ t, locale }: { t: Messages; locale: Locale }) {
         </nav>
         <div className="hidden items-center gap-7 xl:flex">
           {languages}
-          <Button href="#contact" className="min-h-9 px-4 py-2 text-[10px]">
+          <Button
+            href={`${base}#contact`}
+            className="min-h-9 px-4 py-2 text-[10px]"
+          >
             {t.request}
           </Button>
         </div>
@@ -140,7 +154,7 @@ export function Header({ t, locale }: { t: Messages; locale: Locale }) {
             <a
               data-menu-link
               key={label}
-              href={`#${anchors[i]}`}
+              href={i === 3 ? `/${locale}/about` : `${base}#${anchors[i]}`}
               onClick={() => setOpen(false)}
               className="flex items-baseline gap-5 text-[clamp(2rem,7vw,4rem)] font-light tracking-tight"
             >

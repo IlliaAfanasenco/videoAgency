@@ -6,150 +6,237 @@ export const en: Messages = {
   menu: "Menu",
   close: "Close",
   hero: {
-    label: "DRONE. FPV. STORIES THAT MOVE.",
-    lines: ["New", "perspectives", "for your brand."],
+    label: "FRAME NO. 9 · CREATIVE AGENCY",
+    lines: ["We create", "what moves", "your brand."],
     description:
-      "Breathtaking drone and FPV footage for businesses that want to go further.",
-    reel: "Watch showreel",
-    aside: "MORE THAN JUST FOOTAGE",
+      "Cinematic video with camera and drone – for brands, weddings, events and social media.",
+    explore: "Explore projects",
   },
-  projects: {
+  work: {
     label: "OUR WORK",
-    title: "Images that\nmake an impact.",
-    description:
-      "Brand film, event, property or product – we bring your vision to life from the air and in FPV. For a lasting impression.",
-    action: "Explore all sectors",
-    note: "Visual concepts · Illustrative imagery",
-    categories: ["Automotive", "Real Estate", "Events", "Industry"],
-    descriptions: [
-      "Dynamic driving. Precise perspectives. We put your vehicle’s story in motion.",
-      "Architecture with character. From the first flyover to an immersive walkthrough.",
-      "The energy of the moment. We turn your event into lasting memories.",
-      "Complex processes, compelling images. A new perspective on your business.",
-    ],
+    title: "Our work speaks\nin stories.",
+    action: "Explore all projects",
+    empty: "Selected projects will follow soon.",
+    gallery: {
+      all: "All",
+      filters: "Filter projects",
+      play: "Watch video",
+      close: "Close",
+      demo: "DEMO",
+      emptyFiltered: "No projects published in this category yet.",
+    },
   },
-  fpv: {
-    label: "WHERE PERSPECTIVE MEETS FEELING",
-    title: "FPV.\nCloser to\nemotion.",
-    description:
-      "Our FPV footage brings movement, depth and real goosebumps to your films. Made for campaigns that stay with you.",
-    metrics: ["Projects in Germany", "Passion", "Quality"],
+  portfolio: {
+    label: "PORTFOLIO",
+    title: "Portfolio",
+    intro:
+      "Selected films across Drone, Weddings & Events, Social Media and Commercial.",
   },
   why: {
-    label: "PRECISION · CREATIVITY · TRUST",
-    title: "Why\nFRAME NO. 9?",
-    titles: ["Certified pilots", "Individual concepts", "Cinematic quality"],
-    descriptions: [
-      "Professional expertise and regulatory awareness for productions throughout Germany.",
-      "Every project is unique. We develop a bespoke creative approach for your brand.",
-      "Modern filmmaking technology for images that inspire – in 4K, FPV and beyond.",
+    label: "WHY FRAME NO. 9",
+    title: "Different perspectives.\nOne creative vision.",
+    lead: "FRAME NO. 9 combines creative thinking, a cinematic approach and modern technology to create individual visual stories.",
+    items: [
+      {
+        title: "Cinematic Storytelling",
+        text: "We tell stories in images, light and motion – not just footage.",
+      },
+      {
+        title: "Professional Drone Technology",
+        text: "Modern drone technology for perspectives that are impossible from the ground.",
+      },
+      {
+        title: "Creative Thinking",
+        text: "New ideas instead of standard solutions, rethought for every project.",
+      },
+      {
+        title: "Strategic Visual Communication",
+        text: "Every image serves a goal: brand, message and audience.",
+      },
+      {
+        title: "Attention to Detail",
+        text: "From the composition to the final cut.",
+      },
+      {
+        title: "Individual Creative Concepts",
+        text: "Tailored to you, never off the shelf.",
+      },
+      {
+        title: "Authentic Visual Experiences",
+        text: "Real moments and honest images that reach people.",
+      },
     ],
   },
-  coverage: {
-    label: "WHERE WE FLY",
-    title: "Across Germany.\nBeyond expectations.",
-    description:
-      "From the Alps to the North Sea – wherever powerful images are needed, we are there.",
-    action: "Let’s talk about your project",
-    map: "Germany with Hamburg, Berlin, Cologne and Munich",
+  philosophy: {
+    label: "BRAND PHILOSOPHY",
+    lines: ["One frame captures a moment.", "Nine frames tell a story."],
   },
   about: {
-    label: "ABOUT FRAME NO. 9",
-    title: "Two videographers.\nOne signature.",
+    label: "ABOUT US",
+    title: "We don't just create content.\nWe create perspectives.",
+    slogan: "Creativity meets strategy. Content that moves.",
     text: [
-      "Frame No. 9 is a team of two videographers creating cinematic content for brands, companies, events and individual projects.",
-      "We work with professional cameras and drones, combining a creative approach with modern video production craft.",
+      "FRAME NO. 9 combines strategic thinking, creative ideas, modern technology and cinematic storytelling.",
+      "We don't simply produce photo and video – we create visual stories that reflect a brand's character and the emotional side of every project.",
     ],
-    photo: "Placeholder – team photo to follow",
-    action: "More about us",
+    action: "Learn more about us",
+    page: {
+      meta: "About us",
+      philosophy: {
+        label: "PHILOSOPHY",
+        title: "Creativity meets strategy.",
+        text: [
+          "Good images don't happen by chance. Every project starts with a clear thought: what should be said, to whom, and with what feeling?",
+          "That is why we think creativity and strategy together. The idea gives the image direction, the strategy gives the idea impact – content that moves.",
+        ],
+      },
+      perspective: {
+        label: "OUR PERSPECTIVE",
+        title: "How we look at projects.",
+        items: [
+          {
+            title: "Understanding individuality",
+            text: "Every brand has its own character. We listen before we shoot.",
+          },
+          {
+            title: "Developing creative ideas",
+            text: "Your goals become concepts that fit you – not standard solutions.",
+          },
+          {
+            title: "Cinematic aesthetics",
+            text: "Light, composition and motion give every project a filmic look.",
+          },
+          {
+            title: "Visual storytelling",
+            text: "We tell stories that stir emotion and stay in mind.",
+          },
+          {
+            title: "Attention to detail",
+            text: "From the first shot to the final cut.",
+          },
+        ],
+      },
+      process: {
+        label: "FROM IDEA TO EXECUTION",
+        title: "From idea to execution.",
+        text: "It starts with a conversation: we understand your project and your brand. From that we develop the concept and visual direction, produce with camera and drone, and deliver edited, colour-graded material – ready for your channels.",
+        link: "See our process",
+      },
+      closing: {
+        title: "Let's create something remarkable.",
+        action: "Start a project",
+      },
+    },
   },
   services: {
     label: "WHAT WE DO",
-    title: "Nine ways to\ntell a story.",
-    items: [
-      {
-        title: "Social Media Management & Strategy",
-        text: "Strategy development, content planning, social media management, reels and professional content production for brands and companies.",
-      },
-      {
-        title: "Events & Receptions",
-        text: "Video production for events, corporate functions, celebrations and special occasions.",
-      },
-      {
-        title: "Weddings",
-        text: "Emotional wedding films, shot with camera and drone.",
-      },
-      {
-        title: "Hotels & Hospitality",
-        text: "Cinematic content for hotels, apartments, resorts and hospitality projects.",
-      },
-      {
-        title: "Restaurants & Gastronomy",
-        text: "Reels, brand films and social media content for restaurants, bars and gastronomy.",
-      },
-      {
-        title: "Tourism & Destinations",
-        text: "Tourism films, destination content, city films and visual presentations of regions and places.",
-      },
-      {
-        title: "Real Estate",
-        text: "Professional property videos with interior, exterior and aerial footage.",
-      },
-      {
-        title: "Aerial & Drone",
-        text: "Cinematic drone footage for companies, hotels, real estate, events and tourism.",
-      },
-      {
-        title: "Commercial & Brand Content",
-        text: "Video production for brands, companies, campaigns, products and corporate content.",
-      },
-    ],
+    title: "Creative solutions.\nUnique perspectives.",
+    more: "Learn more",
   },
   process: {
     label: "PROCESS",
-    title: "From first call\nto final film.",
+    title: "From the first idea\nto the final frame.",
     steps: [
       {
         title: "Discover",
-        text: "We get to know your brand, your goals and your vision.",
+        text: "We understand your project, your goals, your brand and your values.",
       },
       {
         title: "Create",
-        text: "We develop the visual concept and produce high-quality content.",
+        text: "We develop the creative concept and visual direction, and plan the production.",
+      },
+      {
+        title: "Produce",
+        text: "Professional filming, visual storytelling and the realisation of the concept.",
       },
       {
         title: "Deliver",
-        text: "You receive professional content that makes your story visible.",
+        text: "Editing, colour grading, sound design, final finishing and hand-over of the material.",
       },
     ],
   },
   contact: {
-    title: "LET'S CREATE SOMETHING\nWORTH WATCHING.",
-    description:
-      "Tell us about your idea. Together we turn it into powerful images.",
-    action: "Start a project",
-    brief: "Every project begins with an idea.",
-    hint: "Prepare a short project brief and copy it for your first conversation.",
-    name: "Name / company",
+    title: "Have a vision?\nLet's bring it to life.",
+    text: "Whether commercial film, professional drone footage, wedding, event or creative campaign – every project begins with a conversation.",
+    slogan: "Let's create something remarkable.",
+    direct: "Get in touch",
     email: "Email",
-    message: "What do you have in mind?",
-    copy: "Copy project brief",
-    copied: "Copied – ready for your first conversation.",
-    error: "Could not copy. Please select and copy your text manually.",
-    subject: "FRAME NO. 9 project enquiry",
+    instagram: "Instagram",
+    form: {
+      name: "Full name",
+      company: "Company",
+      email: "Email",
+      phone: "Phone number",
+      projectType: "Project type",
+      choose: "Please select",
+      message: "Project description",
+      optional: "optional",
+      privacyBefore: "I have read the ",
+      privacyLink: "privacy policy",
+      privacyAfter: ".",
+      submit: "Send enquiry",
+      sending: "Sending …",
+      successTitle: "Thank you for your message.",
+      successText: "We will get back to you as soon as possible.",
+      types: [
+        "Drone & Aerial Cinematography",
+        "Weddings & Events",
+        "Social Media & Creative Strategy",
+        "Commercial & Brand Films",
+        "Other",
+      ],
+      errors: {
+        required: "Please fill in this field.",
+        email: "Please enter a valid email address.",
+        phone: "Please enter a valid phone number.",
+        messageShort: "Please describe your project in at least 10 characters.",
+        tooLong: "This text is too long.",
+        privacy: "Please confirm that you have read the privacy policy.",
+        summary: "Please check the highlighted fields.",
+        notConfigured:
+          "The contact form is not set up yet. Your message was not sent.",
+        sendFailed: "Your message could not be sent. Please try again later.",
+        rateLimited: "Too many requests. Please try again later.",
+        network: "No connection. Please check your internet connection.",
+      },
+    },
   },
   footer: {
-    tagline: "Cinematic video. Camera and drone.",
+    brand: "Creative Agency",
+    slogan: "Ideas. Stories. Experiences.",
+    nav: ["Home", "About us", "Services", "Portfolio", "Contact"],
+    navLabel: "Footer navigation",
     legal: "Legal notice",
-    privacy: "Privacy",
+    privacy: "Privacy policy",
+    social: "Social",
+    copyright: "All rights reserved.",
     top: "Back to top",
-    pending: "Company and contact details will be added before publication.",
-    privacyText:
-      "This preview uses no analytics or marketing cookies. Project details stay in your browser and are not sent to a server. Full privacy information will be added before publication.",
   },
-  reel: {
-    title: "A new perspective.",
-    text: "Our showreel will be available here soon. Explore our production services in the meantime.",
-    action: "Explore production services",
+  legal: {
+    badge: "DRAFT · NOT A LEGAL DOCUMENT",
+    note: "This page is a development placeholder. The legally required details are to be supplied by the operator and reviewed before publication.",
+    pending: "To be provided by the operator.",
+    back: "Back to home",
+    impressum: {
+      title: "Legal notice",
+      sections: [
+        "Provider and address",
+        "Authorised representative",
+        "Contact",
+        "VAT identification number",
+        "Responsible for content",
+      ],
+    },
+    datenschutz: {
+      title: "Privacy policy",
+      sections: [
+        "Controller",
+        "Visiting the website",
+        "Contact form",
+        "Recipients and service providers",
+        "Retention period",
+        "Data subject rights",
+      ],
+    },
   },
 };

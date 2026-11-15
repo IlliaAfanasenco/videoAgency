@@ -102,7 +102,7 @@ export function Motion({ children }: { children: React.ReactNode }) {
         gsap.fromTo(
           drone,
           { opacity: 0 },
-          { opacity: 1, duration: 1, delay: 1.2 },
+          { opacity: 0.55, duration: 1, delay: 1.2 },
         );
         // Constant spin around the drone's own centre (inner group origin = 0,0), independent of scroll.
         if (spin)
@@ -276,13 +276,9 @@ export function Motion({ children }: { children: React.ReactNode }) {
     };
     mm.add(
       "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
-      () => flight("desktop", "+=300%"),
+      () => flight("desktop", "+=120%"),
     );
-    // Skipped on short landscape screens: a pinned hero taller than the viewport would be cut off.
-    mm.add(
-      "(max-width: 1023px) and (min-height: 600px) and (prefers-reduced-motion: no-preference)",
-      () => flight("mobile", "+=250%"),
-    );
+    // Mobile / tablet: no pinned hero and no drone animation (desktop-only by design).
     // Reduced motion: nothing to do. The SVG's default state is a static composition
     // (whole route drawn, drone at the start), so it stays visible without any animation.
     return () => mm.revert();
@@ -295,7 +291,7 @@ export function Motion({ children }: { children: React.ReactNode }) {
       <div
         data-drone-follow
         aria-hidden="true"
-        className="pointer-events-none invisible fixed top-0 left-0 z-30"
+        className="pointer-events-none invisible fixed top-0 left-0 -z-10 opacity-55"
       >
         <div data-drone-follow-spin className="size-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}

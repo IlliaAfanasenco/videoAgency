@@ -4,11 +4,13 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Motion } from "@/components/animation/Motion";
 import { Hero } from "@/components/sections/Hero";
-import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { SelectedWorkSection } from "@/components/sections/SelectedWorkSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
-import { FinalCta } from "@/components/sections/FinalCta";
+import { WhyFrameSection } from "@/components/sections/WhyFrameSection";
+import { PhilosophySection } from "@/components/sections/PhilosophySection";
+import { ContactSection } from "@/components/sections/ContactSection";
 export default async function Home({
   params,
 }: {
@@ -22,13 +24,15 @@ export default async function Home({
       <Header t={t} locale={locale} />
       <main id="main-content" tabIndex={-1}>
         <Hero t={t} />
-        <AboutSection t={t} />
+        <AboutSection t={t} locale={locale} />
         <ServicesSection t={t} />
-        <ProjectsSection t={t} />
+        <SelectedWorkSection t={t} locale={locale} />
         <ProcessSection t={t} />
-        <FinalCta t={t} />
+        <WhyFrameSection t={t} />
+        <PhilosophySection t={t} />
+        <ContactSection t={t} locale={locale} />
       </main>
-      <Footer t={t} />
+      <Footer t={t} locale={locale} />
     </Motion>
   );
 }

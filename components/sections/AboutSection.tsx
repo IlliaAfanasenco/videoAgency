@@ -1,43 +1,57 @@
 import Image from "next/image";
 import type { Messages } from "@/messages/de";
-import { Heading, SectionLabel } from "@/components/ui/SectionLabel";
-export function AboutSection({ t }: { t: Messages }) {
+import type { Locale } from "@/lib/i18n";
+import { Button } from "@/components/ui/Button";
+
+// Headline across the full width, then text and one real cinematic frame (no team imagery).
+export function AboutSection({ t, locale }: { t: Messages; locale: Locale }) {
   return (
     <section
       id="about"
-      className="mx-auto grid max-w-[1600px] gap-14 px-6 py-24 sm:px-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-24 lg:px-20 lg:py-40"
+      className="mx-auto max-w-[1600px] px-6 py-20 sm:px-10 lg:px-20 lg:py-36"
     >
-      <div>
-        <div data-reveal>
-          <SectionLabel>{t.about.label}</SectionLabel>
-          <Heading className="text-[clamp(2.4rem,4.6vw,4.6rem)]">
-            {t.about.title}
-          </Heading>
+      <p
+        data-reveal
+        className="mb-6 text-[10px] uppercase tracking-[.23em] text-white/45"
+      >
+        {t.about.label}
+      </p>
+      <h2
+        data-reveal
+        className="whitespace-pre-line text-[clamp(2.3rem,6.2vw,6.4rem)] font-light leading-[1.04] tracking-[-.05em]"
+      >
+        {t.about.title}
+      </h2>
+      <div className="mt-12 grid gap-12 lg:mt-20 lg:grid-cols-[.8fr_1.2fr] lg:items-end lg:gap-24">
+        <div>
+          <p data-reveal className="text-lg font-light text-white/90">
+            {t.about.slogan}
+          </p>
+          <div className="mt-8 max-w-md space-y-5 text-sm leading-7 text-white/60 lg:text-base lg:leading-8">
+            {t.about.text.map((p) => (
+              <p key={p} data-reveal>
+                {p}
+              </p>
+            ))}
+          </div>
+          <div data-reveal className="mt-10">
+            <Button href={`/${locale}/about`}>{t.about.action}</Button>
+          </div>
         </div>
-        <div className="mt-10 max-w-md space-y-5 text-sm leading-7 text-white/60 lg:text-base lg:leading-8">
-          {t.about.text.map((p) => (
-            <p key={p} data-reveal>
-              {p}
-            </p>
-          ))}
-        </div>
-      </div>
-      <figure data-reveal className="relative">
-        <div className="relative aspect-[4/5] overflow-hidden bg-[#111] sm:aspect-[5/4] lg:aspect-[4/5]">
-          {/* Placeholder until a real team / behind-the-scenes photo is supplied */}
+        <div
+          data-reveal
+          className="relative aspect-[4/3] overflow-hidden bg-[#111] lg:aspect-[16/10]"
+        >
           <Image
             data-parallax
-            src="/images/fpv-coast.jpg"
+            src="/images/about/frame.jpg"
             alt=""
             fill
-            sizes="(max-width: 1023px) 100vw, 50vw"
-            className="scale-110 object-cover brightness-75"
+            sizes="(max-width: 1023px) 100vw, 60vw"
+            className="scale-110 object-cover brightness-[.8]"
           />
         </div>
-        <figcaption className="mt-3 text-[9px] uppercase tracking-[.2em] text-white/35">
-          {t.about.photo}
-        </figcaption>
-      </figure>
+      </div>
     </section>
   );
 }

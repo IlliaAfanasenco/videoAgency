@@ -31,12 +31,12 @@ export async function generateMetadata({
   if (!isLocale(locale)) notFound();
   const title =
     locale === "de"
-      ? "FRAME NO. 9 | Videoproduktion mit Kamera & Drohne"
-      : "FRAME NO. 9 | Cinematic Video Production with Camera & Drone";
+      ? "FRAME NO. 9 | Creative Agency für Video, Drohne & Social Media"
+      : "FRAME NO. 9 | Creative Agency for Video, Drone & Social Media";
   const description =
     locale === "de"
-      ? "Frame No. 9: zwei Videografen für Cinematic Content mit Kamera und Drohne – für Marken, Hotels, Events, Hochzeiten und Immobilien."
-      : "Frame No. 9: two videographers creating cinematic content with camera and drone for brands, hotels, events, weddings and real estate.";
+      ? "FRAME NO. 9 ist eine Creative Agency: cinematische Videoproduktion, Drohnenaufnahmen, Hochzeiten & Events, Social Media und Markenfilme."
+      : "FRAME NO. 9 is a creative agency: cinematic video production, drone footage, weddings & events, social media and brand films.";
   const origin = process.env.NEXT_PUBLIC_SITE_URL;
   return {
     title,
@@ -59,7 +59,11 @@ export async function generateMetadata({
       ...(origin
         ? {
             images: [
-              { url: "/images/hero-drone.png", width: 1672, height: 941 },
+              {
+                url: "/videos/hero-loop-desktop-poster.jpg",
+                width: 1920,
+                height: 1080,
+              },
             ],
           }
         : {}),

@@ -1,8 +1,6 @@
 import type { Messages } from "@/messages/de";
 import { Button } from "@/components/ui/Button";
-import { Showreel } from "@/components/ui/Showreel";
 import { HeroVideo } from "@/components/ui/HeroVideo";
-import { HeroDebug } from "@/components/ui/HeroDebug";
 export function Hero({ t }: { t: Messages }) {
   return (
     <section
@@ -38,42 +36,10 @@ export function Hero({ t }: { t: Messages }) {
           <g data-drone-spin>
             <image
               href="/images/dji-matrice.webp"
-              x="-84"
-              y="-84"
-              width="168"
-              height="168"
-              preserveAspectRatio="xMidYMid meet"
-            />
-          </g>
-        </g>
-      </svg>
-      {/* Mobile route: its own continuous path for the 9:16 frame, sweeping across the top,
-          down the right side and curling toward the bottom. Drone image is 160 units (rotor-tip radius ~88), so the
-          path keeps >=95 units from the side edges to leave room for the full rotation radius. */}
-      <svg
-        data-hero-svg="mobile"
-        aria-hidden="true"
-        viewBox="0 0 390 844"
-        preserveAspectRatio="xMidYMid meet"
-        className="pointer-events-none absolute inset-0 -z-10 h-full w-full lg:hidden"
-      >
-        <path
-          data-route
-          d="M110 165C165 130 262 145 288 235C312 320 262 380 240 450C218 520 150 560 165 620C178 660 245 672 280 662"
-          pathLength={1}
-          fill="none"
-          stroke="white"
-          strokeOpacity=".45"
-          strokeWidth="1"
-        />
-        <g data-drone transform="translate(110 165)">
-          <g data-drone-spin>
-            <image
-              href="/images/dji-matrice.webp"
-              x="-80"
-              y="-80"
-              width="160"
-              height="160"
+              x="-30"
+              y="-30"
+              width="60"
+              height="60"
               preserveAspectRatio="xMidYMid meet"
             />
           </g>
@@ -110,28 +76,20 @@ export function Hero({ t }: { t: Messages }) {
           </p>
           <div
             data-hero-copy
-            className="mt-8 flex flex-wrap items-center gap-6"
+            className="mt-8 flex flex-wrap items-center gap-4"
           >
-            <Button href="#contact">{t.request}</Button>
-            <Showreel t={t} />
+            <Button
+              href="#contact"
+              className="border-white bg-white text-black hover:bg-white/80 hover:text-black"
+            >
+              {t.request}
+            </Button>
+            <Button href="#projects">{t.hero.explore}</Button>
           </div>
         </div>
       </div>
-      <p
-        data-hero-fade
-        className="absolute right-16 top-[58%] hidden w-28 text-right text-xs leading-6 tracking-[.25em] text-white/55 xl:block"
-      >
-        {t.hero.aside}
-      </p>
       <div className="absolute inset-x-6 bottom-12 flex items-center justify-between text-[10px] tracking-[.2em] text-white/50 sm:inset-x-10 lg:inset-x-20">
-        <span className="flex items-center gap-5">
-          <span className="text-white">
-            01 <span className="text-white/35">/ 05</span>
-          </span>
-          <span className="h-px w-32 bg-white/20">
-            <span className="block h-px w-8 bg-white/80" />
-          </span>
-        </span>
+        <span />
         <a
           href="#about"
           className="flex items-center gap-4 text-[9px] uppercase"
@@ -139,7 +97,6 @@ export function Hero({ t }: { t: Messages }) {
           Scroll <span className="text-xl">↓</span>
         </a>
       </div>
-      <HeroDebug />
     </section>
   );
 }

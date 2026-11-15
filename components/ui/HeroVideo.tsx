@@ -2,12 +2,12 @@
 import { useEffect, useRef } from "react";
 
 const DESKTOP = {
-  src: "/videos/showreel-desktop.mp4",
-  poster: "/videos/showreel-desktop-poster.jpg",
+  src: "/videos/hero-loop-desktop.mp4",
+  poster: "/videos/hero-loop-desktop-poster.jpg",
 };
 const MOBILE = {
-  src: "/videos/showreel-mobile.mp4",
-  poster: "/videos/showreel-mobile-poster.jpg",
+  src: "/videos/hero-loop-mobile.mp4",
+  poster: "/videos/hero-loop-mobile-poster.jpg",
 };
 
 /**
