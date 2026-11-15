@@ -9,6 +9,8 @@ export type Service = {
   href?: string;
   /** Real stills taken from the client's own showreel (see public/images/services). */
   image: string;
+  /** Optional looping clip; `image` stays as the poster/fallback. */
+  video?: string;
   /** Vertical focal point for cropping the image on narrow cards. */
   focus: string;
   title: string;
@@ -20,7 +22,8 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "drone-aerial-cinematography",
-    image: "/images/services/drone.jpg",
+    image: "/videos/service-drone-poster.jpg",
+    video: "/videos/service-drone-loop.mp4",
     focus: "center",
     title: "Drone & Aerial Cinematography",
     subtitle: "Beyond ordinary perspectives.",
@@ -47,7 +50,8 @@ export const services: Service[] = [
   },
   {
     slug: "weddings-events",
-    image: "/images/services/weddings-events.jpg",
+    image: "/videos/service-weddings-poster.jpg",
+    video: "/videos/service-weddings-loop.mp4",
     focus: "70%",
     title: "Weddings & Events",
     subtitle: "Real moments. Timeless memories.",

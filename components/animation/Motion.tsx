@@ -278,6 +278,44 @@ export function Motion({ children }: { children: React.ReactNode }) {
       "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
       () => flight("desktop", "+=120%"),
     );
+    // About showcase: desktop only. The frame opens from ~80% to full width (clip-path, scrubbed to
+    // scroll, no pin, no extra scroll distance); the phrase fades in at the end. Mobile/reduced: static.
+    mm.add(
+      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
+      () => {
+        const ctx = gsap.context(() => {
+          const tl = gsap.timeline({
+            defaults: { ease: "none" },
+            scrollTrigger: {
+              trigger: "[data-showcase]",
+              start: "top 85%",
+              end: "top 8%",
+              scrub: 0.6,
+              invalidateOnRefresh: true,
+            },
+          });
+          tl.fromTo(
+            "[data-showcase-frame]",
+            { clipPath: "inset(10% 10% 10% 10% round 28px)" },
+            { clipPath: "inset(0% 0% 0% 0% round 0px)", duration: 1 },
+            0,
+          )
+            .fromTo(
+              "[data-showcase-video]",
+              { scale: 1.12 },
+              { scale: 1, duration: 1 },
+              0,
+            )
+            .fromTo(
+              "[data-showcase-phrase]",
+              { opacity: 0, y: 14 },
+              { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" },
+              0.7,
+            );
+        }, root);
+        return () => ctx.revert();
+      },
+    );
     // Mobile / tablet: no pinned hero and no drone animation (desktop-only by design).
     // Reduced motion: nothing to do. The SVG's default state is a static composition
     // (whole route drawn, drone at the start), so it stays visible without any animation.

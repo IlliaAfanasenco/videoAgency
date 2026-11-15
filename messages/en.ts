@@ -72,14 +72,13 @@ export const en: Messages = {
     lines: ["One frame captures a moment.", "Nine frames tell a story."],
   },
   about: {
-    label: "ABOUT US",
-    title: "We don't just create content.\nWe create perspectives.",
+    label: "ABOUT / FRAME NO. 9",
+    title: "We create perspectives.",
     slogan: "Creativity meets strategy. Content that moves.",
-    text: [
-      "FRAME NO. 9 combines strategic thinking, creative ideas, modern technology and cinematic storytelling.",
-      "We don't simply produce photo and video – we create visual stories that reflect a brand's character and the emotional side of every project.",
-    ],
-    action: "Learn more about us",
+    phrase: "Not just content. An experience.",
+    closingTitle: "Your story. Our vision.",
+    closingText: "Cinematic storytelling for brands that want to stand out.",
+    action: "Explore projects",
     page: {
       meta: "About us",
       philosophy: {

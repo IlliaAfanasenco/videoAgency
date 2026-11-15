@@ -17,9 +17,9 @@ export function Footer({ t, locale }: { t: Messages; locale: Locale }) {
       <div className="mx-auto grid max-w-[1480px] gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
           <a href={base} aria-label="FRAME NO. 9 Home">
-            <Logo />
+            <Logo variant="stack" />
           </a>
-          <p className="mt-3 text-[10px] tracking-[.2em] text-white/45">
+          <p className="mt-5 text-[10px] tracking-[.2em] text-white/45">
             {t.footer.brand.toUpperCase()}
           </p>
           <p className="mt-6 text-sm text-white/65">{t.footer.slogan}</p>

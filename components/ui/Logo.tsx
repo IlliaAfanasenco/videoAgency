@@ -1,18 +1,28 @@
-export function Logo() {
+import Image from "next/image";
+
+// Official FRAME NO. 9 logo (transparent PNG derived from the client's master file).
+// "header": mark + wordmark in one line; "stack": mark above wordmark (footer).
+export function Logo({ variant = "header" }: { variant?: "header" | "stack" }) {
+  if (variant === "stack")
+    return (
+      <Image
+        src="/brand/logo-stack.png"
+        alt="FRAME NO. 9"
+        width={677}
+        height={549}
+        unoptimized
+        className="h-auto w-[130px] sm:w-[170px]"
+      />
+    );
   return (
-    <span className="inline-flex items-center gap-3">
-      <svg
-        aria-hidden="true"
-        width="25"
-        height="25"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path d="m12 2 10 20-8-5-2-15ZM10 8 2 22l8-5V8Z" fill="currentColor" />
-      </svg>
-      <span className="text-[10px] font-medium tracking-[.3em]">
-        FRAME NO. 9
-      </span>
-    </span>
+    <Image
+      src="/brand/logo-header.png"
+      alt="FRAME NO. 9"
+      width={367}
+      height={88}
+      priority
+      unoptimized
+      className="h-10 w-auto sm:h-11"
+    />
   );
 }

@@ -1,55 +1,62 @@
-import Image from "next/image";
 import type { Messages } from "@/messages/de";
 import type { Locale } from "@/lib/i18n";
 import { Button } from "@/components/ui/Button";
+import { ShowcaseVideo } from "@/components/ui/ShowcaseVideo";
 
-// Headline across the full width, then text and one real cinematic frame (no team imagery).
+// Cinematic showcase: short headline, a 16:9 film frame that opens up to full width on desktop
+// (scroll-scrubbed, no pin), then one closing line + CTA. Mobile: plain wide frame, no animation.
 export function AboutSection({ t, locale }: { t: Messages; locale: Locale }) {
   return (
-    <section
-      id="about"
-      className="mx-auto max-w-[1600px] px-6 py-20 sm:px-10 lg:px-20 lg:py-36"
-    >
-      <p
-        data-reveal
-        className="mb-6 text-[10px] uppercase tracking-[.23em] text-white/45"
-      >
-        {t.about.label}
-      </p>
-      <h2
-        data-reveal
-        className="whitespace-pre-line text-[clamp(2.3rem,6.2vw,6.4rem)] font-light leading-[1.04] tracking-[-.05em]"
-      >
-        {t.about.title}
-      </h2>
-      <div className="mt-12 grid gap-12 lg:mt-20 lg:grid-cols-[.8fr_1.2fr] lg:items-end lg:gap-24">
-        <div>
-          <p data-reveal className="text-lg font-light text-white/90">
-            {t.about.slogan}
-          </p>
-          <div className="mt-8 max-w-md space-y-5 text-sm leading-7 text-white/60 lg:text-base lg:leading-8">
-            {t.about.text.map((p) => (
-              <p key={p} data-reveal>
-                {p}
-              </p>
-            ))}
-          </div>
-          <div data-reveal className="mt-10">
-            <Button href={`/${locale}/about`}>{t.about.action}</Button>
-          </div>
-        </div>
-        <div
+    <section id="about" className="overflow-x-clip pt-16 lg:pt-28">
+      <div className="mx-auto max-w-[1600px] px-6 sm:px-10 lg:px-20">
+        <p
           data-reveal
-          className="relative aspect-[4/3] overflow-hidden bg-[#111] lg:aspect-[16/10]"
+          className="mb-5 text-[10px] uppercase tracking-[.23em] text-white/55"
         >
-          <Image
-            data-parallax
-            src="/images/about/frame.jpg"
-            alt=""
-            fill
-            sizes="(max-width: 1023px) 100vw, 60vw"
-            className="scale-110 object-cover brightness-[.8]"
-          />
+          {t.about.label}
+        </p>
+        <h2
+          data-reveal
+          className="text-[clamp(2.4rem,8vw,7.5rem)] font-light leading-[1] tracking-[-.055em]"
+        >
+          {t.about.title}
+        </h2>
+      </div>
+
+      <div data-showcase className="relative mt-8 lg:mt-14">
+        <div
+          data-showcase-frame
+          className="relative aspect-video w-full overflow-hidden bg-[#0b0b0b]"
+        >
+          <ShowcaseVideo />
+        </div>
+        <p
+          data-showcase-phrase
+          className="px-6 pt-5 text-sm tracking-[.02em] text-white/70 sm:px-10 lg:absolute lg:bottom-8 lg:left-16 lg:px-0 lg:pt-0 lg:text-xl lg:text-white lg:[text-shadow:0_1px_18px_rgba(0,0,0,.55)]"
+        >
+          {t.about.phrase}
+        </p>
+      </div>
+
+      <div className="mx-auto max-w-[1600px] px-6 py-16 sm:px-10 lg:px-20 lg:py-28">
+        <div data-reveal className="max-w-3xl">
+          <h3 className="text-[clamp(1.9rem,4.4vw,4rem)] font-light leading-[1.05] tracking-[-.045em]">
+            {t.about.closingTitle}
+          </h3>
+          <p className="mt-4 text-base text-white/65 lg:text-lg">
+            {t.about.closingText}
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-8">
+            <Button href={`/${locale}/portfolio`} className="sm:w-auto">
+              {t.about.action}
+            </Button>
+            <a
+              href={`/${locale}#contact`}
+              className="inline-flex min-h-11 items-center justify-center text-sm text-white/65 underline-offset-4 transition hover:text-white hover:underline"
+            >
+              {t.request}
+            </a>
+          </div>
         </div>
       </div>
     </section>

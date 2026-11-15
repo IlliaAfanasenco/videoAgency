@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { LoopVideo } from "@/components/ui/LoopVideo";
 import type { Service } from "@/data/services";
 
 export function ServiceCard({
@@ -19,14 +20,23 @@ export function ServiceCard({
       data-reveal
       className={`group relative block min-w-0 overflow-hidden bg-[#111] ${className}`}
     >
-      <Image
-        src={service.image}
-        alt=""
-        fill
-        sizes="(max-width: 1023px) 100vw, 58vw"
-        style={{ objectPosition: service.focus }}
-        className="object-cover brightness-[.72] transition duration-[900ms] ease-out motion-safe:group-hover:scale-[1.04] group-hover:brightness-90"
-      />
+      {service.video ? (
+        <LoopVideo
+          src={service.video}
+          poster={service.image}
+          style={{ objectPosition: service.focus }}
+          className={`absolute inset-0 size-full object-cover brightness-[.72] transition duration-[900ms] ease-out motion-safe:group-hover:scale-[1.04] group-hover:brightness-90`}
+        />
+      ) : (
+        <Image
+          src={service.image}
+          alt=""
+          fill
+          sizes="(max-width: 1023px) 100vw, 58vw"
+          style={{ objectPosition: service.focus }}
+          className="object-cover brightness-[.72] transition duration-[900ms] ease-out motion-safe:group-hover:scale-[1.04] group-hover:brightness-90"
+        />
+      )}
       <span className="absolute inset-0 bg-linear-to-t from-black/85 via-black/10 to-black/25" />
       <span className="absolute left-5 top-5 text-[10px] tracking-[.2em] text-white/70 sm:left-8 sm:top-8">
         {String(index + 1).padStart(2, "0")}
