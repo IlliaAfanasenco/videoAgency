@@ -1,7 +1,7 @@
 import type { Messages } from "@/messages/de";
 import type { Locale } from "@/lib/i18n";
 import { contactInfo } from "@/data/contact";
-import { Heading } from "@/components/ui/SectionLabel";
+import { Heading, SectionLabel } from "@/components/ui/SectionLabel";
 import { ContactForm } from "@/components/ui/ContactForm";
 
 export function ContactSection({ t, locale }: { t: Messages; locale: Locale }) {
@@ -9,9 +9,10 @@ export function ContactSection({ t, locale }: { t: Messages; locale: Locale }) {
   return (
     <section
       id="contact"
-      className="mx-auto grid max-w-[1600px] gap-12 px-6 py-20 sm:px-10 lg:grid-cols-[1fr_1fr] lg:gap-24 lg:px-20 lg:py-36"
+      className="container-x grid gap-12 py-(--section-y) lg:grid-cols-[1fr_1fr] lg:gap-24"
     >
       <div data-reveal>
+        <SectionLabel index={6}>{t.nav[4]}</SectionLabel>
         <Heading className="text-[clamp(2.4rem,5.2vw,5.4rem)]">
           {t.contact.title}
         </Heading>

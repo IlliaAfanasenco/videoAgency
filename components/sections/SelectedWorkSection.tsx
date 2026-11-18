@@ -14,12 +14,9 @@ export function SelectedWorkSection({
 }) {
   const projects = getFeaturedProjects(3);
   return (
-    <section
-      id="projects"
-      className="mx-auto max-w-[1600px] px-6 py-24 sm:px-10 lg:px-20 lg:py-36"
-    >
+    <section id="projects" className="container-x py-(--section-y)">
       <div data-reveal className="mb-14 lg:mb-20">
-        <SectionLabel>{t.work.label}</SectionLabel>
+        <SectionLabel index={3}>{t.work.label}</SectionLabel>
         <Heading>{t.work.title}</Heading>
       </div>
       {projects.length > 0 ? (

@@ -34,7 +34,7 @@ export default async function AboutPage({
       <div id="top" />
       <main id="main-content" tabIndex={-1}>
         {/* Intro */}
-        <section className="mx-auto max-w-[1600px] px-6 pb-16 pt-36 sm:px-10 lg:px-20 lg:pb-28 lg:pt-48">
+        <section className="container-x pb-16 pt-36 lg:pb-28 lg:pt-48">
           <h1 className="whitespace-pre-line text-[clamp(2.6rem,8vw,8.2rem)] font-light leading-[1.02] tracking-[-.055em]">
             {a.title}
           </h1>
@@ -54,7 +54,7 @@ export default async function AboutPage({
         </div>
 
         {/* Philosophy */}
-        <section className="mx-auto grid max-w-[1600px] gap-8 px-6 py-20 sm:px-10 lg:grid-cols-[.6fr_1.4fr] lg:gap-24 lg:px-20 lg:py-36">
+        <section className="container-x grid gap-8 py-20 lg:grid-cols-[.6fr_1.4fr] lg:gap-24 lg:py-36">
           <div data-reveal>
             <SectionLabel>{p.philosophy.label}</SectionLabel>
           </div>
@@ -71,7 +71,7 @@ export default async function AboutPage({
         </section>
 
         {/* Our Perspective: large typographic rows */}
-        <section className="mx-auto max-w-[1600px] px-6 pb-20 sm:px-10 lg:px-20 lg:pb-36">
+        <section className="container-x pb-20 lg:pb-36">
           <div data-reveal className="mb-10 lg:mb-14">
             <SectionLabel>{p.perspective.label}</SectionLabel>
             <p className="text-lg font-light text-white/70">
@@ -97,8 +97,8 @@ export default async function AboutPage({
         </section>
 
         {/* From idea to execution */}
-        <section className="mx-auto max-w-[1100px] px-6 pb-20 text-center sm:px-10 lg:pb-36">
-          <div data-reveal>
+        <section className="container-x pb-20 text-center lg:pb-36">
+          <div data-reveal className="mx-auto max-w-[1100px]">
             <SectionLabel>{p.process.label}</SectionLabel>
             <h2 className="text-[clamp(2rem,4.2vw,4rem)] font-light tracking-[-.04em]">
               {p.process.title}
@@ -116,8 +116,8 @@ export default async function AboutPage({
         </section>
 
         {/* Closing CTA */}
-        <section className="border-t border-white/10 px-6 py-24 text-center sm:px-10 lg:py-40">
-          <div data-reveal>
+        <section className="border-t border-white/10 py-24 text-center lg:py-40">
+          <div data-reveal className="container-x">
             <p className="text-[clamp(2.2rem,6vw,6rem)] font-light leading-[1.05] tracking-[-.05em]">
               {p.closing.title}
             </p>

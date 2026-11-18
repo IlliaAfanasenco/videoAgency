@@ -6,10 +6,10 @@ export function WhyFrameSection({ t }: { t: Messages }) {
   return (
     <section
       id="why"
-      className="mx-auto grid max-w-[1600px] gap-10 px-6 py-16 sm:px-10 lg:grid-cols-[.85fr_1.15fr] lg:gap-24 lg:px-20 lg:py-28"
+      className="container-x grid gap-10 py-(--section-y) lg:grid-cols-[.85fr_1.15fr] lg:gap-24"
     >
       <div data-reveal className="lg:sticky lg:top-32 lg:self-start">
-        <SectionLabel>{t.why.label}</SectionLabel>
+        <SectionLabel index={5}>{t.why.label}</SectionLabel>
         <Heading className="text-[clamp(2.2rem,4.2vw,4.2rem)]">
           {t.why.title}
         </Heading>

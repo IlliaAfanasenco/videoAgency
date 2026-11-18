@@ -176,7 +176,7 @@ export function ProjectGallery({
         <div
           role="group"
           aria-label={labels.filters}
-          className="-mx-6 mb-10 flex gap-2 overflow-x-auto px-6 pb-2 sm:mx-0 sm:flex-wrap sm:px-0 [scrollbar-width:none]"
+          className="-mx-5 mb-10 flex gap-2 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:px-0 [scrollbar-width:none]"
         >
           {[{ id: "all", label: labels.all }, ...projectCategories].map((c) => (
             <button

@@ -9,7 +9,6 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { WhyFrameSection } from "@/components/sections/WhyFrameSection";
-import { PhilosophySection } from "@/components/sections/PhilosophySection";
 import { ContactSection } from "@/components/sections/ContactSection";
 export default async function Home({
   params,
@@ -29,7 +28,6 @@ export default async function Home({
         <SelectedWorkSection t={t} locale={locale} />
         <ProcessSection t={t} />
         <WhyFrameSection t={t} />
-        <PhilosophySection t={t} />
         <ContactSection t={t} locale={locale} />
       </main>
       <Footer t={t} locale={locale} />

@@ -95,7 +95,7 @@ export function Header({
     <header
       className={`fixed inset-x-0 top-0 z-40 transition duration-500 ${scrolled ? "border-b border-white/10 bg-[#050505]/85 backdrop-blur-xl" : "bg-transparent"}`}
     >
-      <div className="mx-auto flex h-20 max-w-[1600px] items-center justify-between px-6 sm:px-10 lg:px-16">
+      <div className="container-x flex h-20 items-center justify-between">
         <a href={`${base}#top`} aria-label="FRAME NO. 9 Home">
           <Logo />
         </a>

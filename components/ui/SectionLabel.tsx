@@ -1,8 +1,36 @@
-export function SectionLabel({ children }: { children: React.ReactNode }) {
+// Two-tier section identity: gold index + hairline + clear section name (animated by Motion via data-section-label).
+export function SectionLabel({
+  children,
+  index,
+}: {
+  children: React.ReactNode;
+  index?: number;
+}) {
   return (
-    <p className="mb-6 text-[10px] uppercase tracking-[.23em] text-white/45">
-      {children}
-    </p>
+    <div
+      data-section-label
+      className="mb-6 flex items-center gap-3 sm:mb-8 sm:gap-5"
+    >
+      {index !== undefined && (
+        <span
+          data-sl-num
+          className="text-sm font-light tabular-nums tracking-[.12em] text-gold sm:text-base"
+        >
+          {String(index).padStart(2, "0")}
+        </span>
+      )}
+      <span
+        data-sl-line
+        aria-hidden="true"
+        className="h-px w-10 shrink-0 origin-left bg-gold/60 sm:w-20"
+      />
+      <span
+        data-sl-text
+        className="min-w-0 text-xs uppercase tracking-[.14em] text-white sm:text-sm sm:tracking-[.18em] lg:text-base"
+      >
+        {children}
+      </span>
+    </div>
   );
 }
 export function Heading({

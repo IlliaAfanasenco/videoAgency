@@ -37,6 +37,22 @@ export function Motion({ children }: { children: React.ReactNode }) {
             scrollTrigger: { trigger: el, start: "top 92%", once: true },
           }),
         );
+        gsap.utils
+          .toArray<HTMLElement>("[data-section-label]")
+          .forEach((el) => {
+            const num = el.querySelector("[data-sl-num]");
+            const line = el.querySelector("[data-sl-line]");
+            const text = el.querySelector("[data-sl-text]");
+            const tl = gsap.timeline({
+              defaults: { ease: "power2.out" },
+              scrollTrigger: { trigger: el, start: "top 92%", once: true },
+            });
+            if (num) tl.from(num, { opacity: 0, y: 8, duration: 0.5 });
+            if (line)
+              tl.from(line, { scaleX: 0, duration: 0.6 }, num ? 0.12 : 0);
+            if (text)
+              tl.from(text, { opacity: 0, x: -10, duration: 0.6 }, 0.25);
+          });
         gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) =>
           gsap.fromTo(
             el,

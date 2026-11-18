@@ -10,6 +10,7 @@ export const en: Messages = {
     lines: ["We create", "what moves", "your brand."],
     description:
       "Cinematic video with camera and drone – for brands, weddings, events and social media.",
+    philosophy: ["One frame captures a moment.", "Nine frames tell a story."],
     explore: "Explore projects",
   },
   work: {
@@ -66,10 +67,6 @@ export const en: Messages = {
         text: "Real moments and honest images that reach people.",
       },
     ],
-  },
-  philosophy: {
-    label: "BRAND PHILOSOPHY",
-    lines: ["One frame captures a moment.", "Nine frames tell a story."],
   },
   about: {
     label: "ABOUT / FRAME NO. 9",

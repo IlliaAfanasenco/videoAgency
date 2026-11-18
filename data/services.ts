@@ -78,8 +78,9 @@ export const services: Service[] = [
   },
   {
     slug: "social-media-creative-strategy",
-    image: "/images/services/social-media.jpg",
-    focus: "center",
+    image: "/videos/service-social-poster.jpg",
+    video: "/videos/service-social-loop.mp4",
+    focus: "50% 45%",
     title: "Social Media & Creative Strategy",
     subtitle: "Content with purpose. Stories with impact.",
     offerings: {
@@ -105,8 +106,9 @@ export const services: Service[] = [
   },
   {
     slug: "commercial-brand-films",
-    image: "/images/services/commercial.jpg",
-    focus: "center",
+    image: "/videos/service-commercial-poster.jpg",
+    video: "/videos/service-commercial-loop.mp4",
+    focus: "50% 62%",
     title: "Commercial & Brand Films",
     subtitle: "Your vision. Our creative perspective.",
     offerings: {

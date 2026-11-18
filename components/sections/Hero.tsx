@@ -47,48 +47,73 @@ export function Hero({ t }: { t: Messages }) {
       </svg>
       <div
         data-hero-content
-        className="mx-auto flex min-h-[max(640px,100svh)] max-w-[1600px] items-center px-6 pb-28 pt-40 sm:px-10 lg:min-h-[max(800px,100svh)] lg:px-20 will-change-transform"
+        className="container-x flex min-h-[max(640px,100svh)] flex-col justify-between gap-10 pb-[calc(5.25rem+env(safe-area-inset-bottom))] pt-28 sm:gap-16 sm:pb-28 will-change-transform sm:pt-32 lg:min-h-[max(800px,100svh)] lg:pb-32 lg:pt-36"
       >
-        <div className="max-w-[780px]">
-          <p
-            data-eyebrow
-            className="mb-7 text-[9px] tracking-[.24em] text-white/55 sm:text-[10px]"
-          >
-            {t.hero.label}
-          </p>
-          <h1 className="text-[clamp(2.9rem,6.1vw,6.6rem)] font-light leading-[1.02] tracking-[-.052em]">
-            {t.hero.lines.map((line, i) => (
-              <span key={line} className="block overflow-hidden">
-                <span
-                  data-title-line
-                  className={`block pb-1 ${i === 2 ? "text-white/55" : ""}`}
-                >
-                  {line}
-                </span>
-              </span>
-            ))}
-          </h1>
-          <p
-            data-hero-copy
-            className="mt-6 max-w-[425px] text-sm leading-6 text-white/70 lg:text-base"
-          >
-            {t.hero.description}
-          </p>
-          <div
-            data-hero-copy
-            className="mt-8 flex flex-wrap items-center gap-4"
-          >
-            <Button
-              href="#contact"
-              className="border-white bg-white text-black hover:bg-white/80 hover:text-black"
+        <p
+          data-hero-copy
+          className="text-[clamp(1.5rem,4.3vw,4.4rem)] font-light leading-[1.05] tracking-[-.05em]"
+        >
+          {t.hero.philosophy.map((line, i) => (
+            <span
+              key={line}
+              className={`block ${i === 1 ? "text-white/50" : "text-white"}`}
             >
-              {t.request}
-            </Button>
-            <Button href="#projects">{t.hero.explore}</Button>
+              {line}
+            </span>
+          ))}
+        </p>
+        <div className="grid items-end gap-x-12 gap-y-6 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] xl:grid-cols-[minmax(0,1fr)_26rem] xl:gap-x-16">
+          <div>
+            <p
+              data-eyebrow
+              className="mb-3 text-[9px] tracking-[.24em] text-white/55 sm:mb-5 sm:text-[10px]"
+            >
+              {t.hero.label}
+            </p>
+            <h1 className="text-[clamp(1.75rem,3.3vw,3rem)] font-light leading-[1.08] max-sm:text-[clamp(1.75rem,7vw,2.5rem)] tracking-[-.05em]">
+              {t.hero.lines.map((line, i) => (
+                <span key={line}>
+                  {i > 0 && " "}
+                  <span className="inline-block overflow-hidden align-top">
+                    <span
+                      data-title-line
+                      className={`block pb-1 ${i === 2 ? "text-white/55" : ""}`}
+                    >
+                      {line}
+                    </span>
+                  </span>
+                </span>
+              ))}
+            </h1>
+          </div>
+          <div className="lg:max-w-[460px] lg:justify-self-end">
+            <p
+              data-hero-copy
+              className="mt-1 max-w-[460px] text-[13px] leading-[1.45] text-white/70 sm:mt-0 sm:text-sm sm:leading-6 lg:text-base"
+            >
+              {t.hero.description}
+            </p>
+            <div
+              data-hero-copy
+              className="mt-3.5 flex items-center gap-2.5 max-sm:flex-nowrap sm:mt-5 sm:flex-wrap sm:gap-4 lg:mt-6"
+            >
+              <Button
+                href="#contact"
+                className="border-white bg-white text-black hover:bg-white/80 hover:text-black max-sm:h-11 max-sm:min-w-0 max-sm:gap-2 max-sm:whitespace-nowrap max-sm:px-3.5 max-sm:py-0 max-sm:text-[11px] min-[360px]:max-sm:gap-3 min-[360px]:max-sm:px-4 min-[360px]:max-sm:text-xs"
+              >
+                {t.request}
+              </Button>
+              <Button
+                href="#projects"
+                className="max-sm:h-11 max-sm:min-w-0 max-sm:gap-2 max-sm:whitespace-nowrap max-sm:px-3.5 max-sm:py-0 max-sm:text-[11px] min-[360px]:max-sm:gap-3 min-[360px]:max-sm:px-4 min-[360px]:max-sm:text-xs"
+              >
+                {t.hero.explore}
+              </Button>
+            </div>
           </div>
         </div>
       </div>
-      <div className="absolute inset-x-6 bottom-12 flex items-center justify-between text-[10px] tracking-[.2em] text-white/50 sm:inset-x-10 lg:inset-x-20">
+      <div className="container-x absolute inset-x-0 bottom-[calc(1.5rem+env(safe-area-inset-bottom))] sm:bottom-12 flex items-center justify-between text-[10px] tracking-[.2em] text-white/50">
         <span />
         <a
           href="#about"

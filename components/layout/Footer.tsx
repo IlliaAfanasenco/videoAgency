@@ -13,8 +13,8 @@ export function Footer({ t, locale }: { t: Messages; locale: Locale }) {
     [t.footer.nav[4], `${base}#contact`],
   ];
   return (
-    <footer className="border-t border-white/10 px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
-      <div className="mx-auto grid max-w-[1480px] gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
+    <footer className="border-t border-white/10 py-10 lg:py-14">
+      <div className="container-x grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
           <a href={base} aria-label="FRAME NO. 9 Home">
             <Logo variant="stack" />
@@ -71,16 +71,18 @@ export function Footer({ t, locale }: { t: Messages; locale: Locale }) {
           </ul>
         </div>
       </div>
-      <div className="mx-auto mt-10 flex max-w-[1480px] flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-[10px] text-white/40">
-        <p>
-          © {new Date().getFullYear()} FRAME NO. 9 · {t.footer.copyright}
-        </p>
-        <a
-          href="#top"
-          className="inline-flex min-h-11 items-center hover:text-white"
-        >
-          {t.footer.top} ↑
-        </a>
+      <div className="container-x mt-10">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-[10px] text-white/40">
+          <p>
+            © {new Date().getFullYear()} FRAME NO. 9 · {t.footer.copyright}
+          </p>
+          <a
+            href="#top"
+            className="inline-flex min-h-11 items-center hover:text-white"
+          >
+            {t.footer.top} ↑
+          </a>
+        </div>
       </div>
     </footer>
   );

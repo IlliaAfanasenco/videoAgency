@@ -1,5 +1,6 @@
 import type { Messages } from "@/messages/de";
 import type { Locale } from "@/lib/i18n";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Button } from "@/components/ui/Button";
 import { ShowcaseVideo } from "@/components/ui/ShowcaseVideo";
 
@@ -7,14 +8,11 @@ import { ShowcaseVideo } from "@/components/ui/ShowcaseVideo";
 // (scroll-scrubbed, no pin), then one closing line + CTA. Mobile: plain wide frame, no animation.
 export function AboutSection({ t, locale }: { t: Messages; locale: Locale }) {
   return (
-    <section id="about" className="overflow-x-clip pt-16 lg:pt-28">
-      <div className="mx-auto max-w-[1600px] px-6 sm:px-10 lg:px-20">
-        <p
-          data-reveal
-          className="mb-5 text-[10px] uppercase tracking-[.23em] text-white/55"
-        >
-          {t.about.label}
-        </p>
+    <section id="about" className="overflow-x-clip pt-(--section-y)">
+      <div className="container-x">
+        <div data-reveal>
+          <SectionLabel index={1}>{t.about.label}</SectionLabel>
+        </div>
         <h2
           data-reveal
           className="text-[clamp(2.4rem,8vw,7.5rem)] font-light leading-[1] tracking-[-.055em]"
@@ -32,13 +30,13 @@ export function AboutSection({ t, locale }: { t: Messages; locale: Locale }) {
         </div>
         <p
           data-showcase-phrase
-          className="px-6 pt-5 text-sm tracking-[.02em] text-white/70 sm:px-10 lg:absolute lg:bottom-8 lg:left-16 lg:px-0 lg:pt-0 lg:text-xl lg:text-white lg:[text-shadow:0_1px_18px_rgba(0,0,0,.55)]"
+          className="container-x pt-5 text-sm tracking-[.02em] text-white/70 lg:absolute lg:inset-x-0 lg:bottom-8 lg:pt-0 lg:text-xl lg:text-white lg:[text-shadow:0_1px_18px_rgba(0,0,0,.55)]"
         >
           {t.about.phrase}
         </p>
       </div>
 
-      <div className="mx-auto max-w-[1600px] px-6 py-16 sm:px-10 lg:px-20 lg:py-28">
+      <div className="container-x py-(--section-y)">
         <div data-reveal className="max-w-3xl">
           <h3 className="text-[clamp(1.9rem,4.4vw,4rem)] font-light leading-[1.05] tracking-[-.045em]">
             {t.about.closingTitle}

@@ -18,7 +18,7 @@ npm start
 
 | Route | Content |
 |---|---|
-| `/[locale]` | Hero, About, What We Do, Selected Work, Our Approach, Why FRAME NO. 9, Brand Philosophy, Contact |
+| `/[locale]` | Hero, About, What We Do, Selected Work, Our Approach, Why FRAME NO. 9, Contact |
 | `/[locale]/about` | About page |
 | `/[locale]/portfolio` | Portfolio with category filters and video dialog |
 | `/[locale]/impressum`, `/[locale]/datenschutz` | **Draft placeholders**, not legal documents (noindex) |

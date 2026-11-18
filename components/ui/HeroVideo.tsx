@@ -2,11 +2,11 @@
 import { useEffect, useRef } from "react";
 
 const DESKTOP = {
-  src: "/videos/hero-loop-desktop.mp4",
+  src: "/videos/hero-loop-desktop.mp4?v=2",
   poster: "/videos/hero-loop-desktop-poster.jpg",
 };
 const MOBILE = {
-  src: "/videos/hero-loop-mobile.mp4",
+  src: "/videos/hero-loop-mobile.mp4?v=2",
   poster: "/videos/hero-loop-mobile-poster.jpg",
 };
 

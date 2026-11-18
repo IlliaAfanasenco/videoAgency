@@ -13,12 +13,9 @@ const layout = [
 
 export function ServicesSection({ t }: { t: Messages }) {
   return (
-    <section
-      id="services"
-      className="mx-auto max-w-[1600px] px-6 py-24 sm:px-10 lg:px-20 lg:py-36"
-    >
+    <section id="services" className="container-x py-(--section-y)">
       <div data-reveal className="mb-14 lg:mb-24">
-        <SectionLabel>{t.services.label}</SectionLabel>
+        <SectionLabel index={2}>{t.services.label}</SectionLabel>
         <Heading>{t.services.title}</Heading>
       </div>
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-8">

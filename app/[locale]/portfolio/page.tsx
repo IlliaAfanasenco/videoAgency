@@ -36,7 +36,7 @@ export default async function PortfolioPage({
       <main
         id="main-content"
         tabIndex={-1}
-        className="mx-auto max-w-[1600px] px-6 pb-24 pt-36 sm:px-10 lg:px-20 lg:pb-36 lg:pt-44"
+        className="container-x pb-24 pt-36 lg:pb-36 lg:pt-44"
       >
         <div className="mb-12 lg:mb-16">
           <SectionLabel>{t.portfolio.label}</SectionLabel>

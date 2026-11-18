@@ -9,6 +9,7 @@ export const de = {
     lines: ["We create", "what moves", "your brand."],
     description:
       "Kinematografische Videos mit Kamera und Drohne – für Marken, Hochzeiten, Events und Social Media.",
+    philosophy: ["One frame captures a moment.", "Nine frames tell a story."],
     explore: "Projekte entdecken",
   },
   work: {
@@ -66,10 +67,6 @@ export const de = {
         text: "Echte Momente und ehrliche Bilder, die Menschen erreichen.",
       },
     ],
-  },
-  philosophy: {
-    label: "BRAND PHILOSOPHY",
-    lines: ["One frame captures a moment.", "Nine frames tell a story."],
   },
   about: {
     label: "ABOUT / FRAME NO. 9",
