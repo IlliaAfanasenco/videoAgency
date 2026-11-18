@@ -2,6 +2,7 @@ import type { Messages } from "./de";
 export const en: Messages = {
   nav: ["Home", "Projects", "Services", "About us", "Contact"],
   request: "Start a project",
+  floatingCta: "Let's talk",
   skip: "Skip to content",
   menu: "Menu",
   close: "Close",
@@ -17,6 +18,43 @@ export const en: Messages = {
     label: "OUR WORK",
     title: "Our work speaks\nin stories.",
     action: "Explore all projects",
+    cases: {
+      intro:
+        "Selected case studies that show how stories turn into cinematic brand experiences.",
+      note: "Example projects · sample format for upcoming case studies",
+      from: "from",
+      deliverables: "Deliverables",
+      viewCase: "View case",
+      framePreview: "Preview",
+      sample: "Example project",
+      detail: {
+        back: "All projects",
+        project: "Project",
+        location: "Location",
+        type: "Type",
+        category: "Category",
+        goal: "Client goal",
+        created: "What we created",
+        deliverables: "Deliverables",
+        timeline: "Timeline",
+        investment: "Investment",
+        startingAt: "From",
+        suitable: "Suitable for",
+        similarLead: "A similar project for you could start from",
+        similarRange: "Comparable projects typically range from",
+        similarNote:
+          "The exact price depends on scope, shooting days and editing. We are happy to prepare a tailored quote.",
+        gallery: "Selected frames",
+        teaser: "Teaser",
+        ctaTitle: "Planning a project like this?",
+        ctaText:
+          "Tell us about your idea. We will come back with a concept and a clear budget range.",
+        ctaAction: "Start a project",
+        next: "Next case",
+        sampleNote:
+          "Example project: content and prices illustrate the case study format.",
+      },
+    },
     empty: "Selected projects will follow soon.",
     gallery: {
       all: "All",
@@ -36,6 +74,7 @@ export const en: Messages = {
   why: {
     label: "WHY FRAME NO. 9",
     title: "Different perspectives.\nOne creative vision.",
+    closing: "Your vision.\nOur perspective.",
     lead: "FRAME NO. 9 combines creative thinking, a cinematic approach and modern technology to create individual visual stories.",
     items: [
       {

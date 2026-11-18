@@ -1,6 +1,7 @@
 export const de = {
   nav: ["Home", "Projekte", "Leistungen", "Über uns", "Kontakt"],
   request: "Projekt anfragen",
+  floatingCta: "Projekt besprechen",
   skip: "Zum Inhalt",
   menu: "Menü",
   close: "Schließen",
@@ -16,6 +17,43 @@ export const de = {
     label: "UNSERE ARBEIT",
     title: "Our work speaks\nin stories.",
     action: "Alle Projekte entdecken",
+    cases: {
+      intro:
+        "Ausgewählte Fallstudien, die zeigen, wie aus Geschichten kinematografische Markenerlebnisse werden.",
+      note: "Beispielprojekte · Musterformat für kommende Fallstudien",
+      from: "ab",
+      deliverables: "Umfang",
+      viewCase: "Fall ansehen",
+      framePreview: "Vorschau",
+      sample: "Beispielprojekt",
+      detail: {
+        back: "Alle Projekte",
+        project: "Projekt",
+        location: "Ort",
+        type: "Art",
+        category: "Kategorie",
+        goal: "Ziel des Kunden",
+        created: "Was wir umgesetzt haben",
+        deliverables: "Lieferumfang",
+        timeline: "Zeitrahmen",
+        investment: "Investition",
+        startingAt: "Ab",
+        suitable: "Geeignet für",
+        similarLead: "Ein ähnliches Projekt für dich könnte starten ab",
+        similarRange: "Vergleichbare Projekte liegen typischerweise bei",
+        similarNote:
+          "Der genaue Preis hängt von Umfang, Drehtagen und Schnitt ab. Wir erstellen dir gern ein individuelles Angebot.",
+        gallery: "Ausgewählte Frames",
+        teaser: "Teaser",
+        ctaTitle: "Ein Projekt wie dieses planen?",
+        ctaText:
+          "Erzähl uns von deiner Idee. Wir melden uns mit einem Konzept und einem klaren Budgetrahmen.",
+        ctaAction: "Projekt anfragen",
+        next: "Nächster Fall",
+        sampleNote:
+          "Beispielprojekt: Inhalte und Preise dienen der Veranschaulichung des Fallstudien-Formats.",
+      },
+    },
     empty: "Ausgewählte Projekte folgen in Kürze.",
     gallery: {
       all: "All",
@@ -36,6 +74,7 @@ export const de = {
   why: {
     label: "WARUM FRAME NO. 9",
     title: "Different perspectives.\nOne creative vision.",
+    closing: "Your vision.\nOur perspective.",
     lead: "FRAME NO. 9 verbindet kreatives Denken, einen kinematografischen Ansatz und moderne Technologie zu individuellen visuellen Geschichten.",
     items: [
       {

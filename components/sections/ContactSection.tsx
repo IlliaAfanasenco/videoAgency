@@ -54,8 +54,12 @@ export function ContactSection({ t, locale }: { t: Messages; locale: Locale }) {
           </div>
         )}
       </div>
-      <div data-reveal>
-        <ContactForm t={t} locale={locale} />
+      {/* id: target of the floating CTA (scroll-padding on <html> keeps it clear of the header).
+          Kept outside the data-reveal wrapper so its position is not offset by the reveal transform. */}
+      <div id="contact-form" tabIndex={-1} className="outline-none">
+        <div data-reveal>
+          <ContactForm t={t} locale={locale} />
+        </div>
       </div>
     </section>
   );

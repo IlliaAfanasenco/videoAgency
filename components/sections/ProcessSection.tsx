@@ -40,7 +40,7 @@ export function ProcessSection({ t }: { t: Messages }) {
       {/* ---------- Desktop: pinned scroll story ---------- */}
       <div
         data-pj-panel
-        className="hidden h-svh min-h-[620px] flex-col pb-10 pt-24 journey:flex"
+        className="hidden h-svh min-h-[660px] flex-col pb-24 pt-24 min-[1700px]:pb-10 journey:flex"
       >
         <div data-reveal className="mb-5 shrink-0">
           <div data-pj-head>

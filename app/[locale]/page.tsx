@@ -9,6 +9,7 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { WhyFrameSection } from "@/components/sections/WhyFrameSection";
+import { FloatingCta } from "@/components/ui/FloatingCta";
 import { ContactSection } from "@/components/sections/ContactSection";
 export default async function Home({
   params,
@@ -31,6 +32,7 @@ export default async function Home({
         <ContactSection t={t} locale={locale} />
       </main>
       <Footer t={t} locale={locale} />
+      <FloatingCta label={t.floatingCta} />
     </Motion>
   );
 }
