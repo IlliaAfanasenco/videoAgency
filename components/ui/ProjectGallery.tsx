@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { projectCategories, type Project } from "@/data/projects";
+import type { Project } from "@/data/projects";
+import { getService, type ServiceId } from "@/data/services";
 import type { Locale } from "@/lib/i18n";
 
 export type GalleryLabels = {
@@ -13,8 +14,8 @@ export type GalleryLabels = {
   emptyFiltered: string;
 };
 
-const categoryLabel = (id: Project["category"]) =>
-  projectCategories.find((c) => c.id === id)?.label ?? id;
+const categoryLabel = (ids: ServiceId[]) =>
+  ids.map((id) => getService(id).short).join(" · ");
 
 function VideoDialog({
   project,
@@ -59,7 +60,7 @@ function VideoDialog({
                 {project.title[locale]}
               </h2>
               <p className="text-[10px] tracking-[.18em] text-white/50">
-                {categoryLabel(project.category)}
+                {categoryLabel(project.services)}
               </p>
             </div>
             <button
@@ -134,7 +135,7 @@ function Card({
       </span>
       <span className="absolute inset-x-5 bottom-5 sm:inset-x-7 sm:bottom-7">
         <span className="block text-[10px] tracking-[.18em] text-white/60">
-          {categoryLabel(project.category)}
+          {categoryLabel(project.services)}
         </span>
         <span className="mt-2 block text-xl font-light sm:text-2xl">
           {project.title[locale]}
@@ -148,23 +149,22 @@ export function ProjectGallery({
   projects,
   locale,
   labels,
-  filterable = false,
+  filter = "all",
   featuredLayout = false,
 }: {
   projects: Project[];
   locale: Locale;
   labels: GalleryLabels;
-  filterable?: boolean;
+  /** Controlled filter (see PortfolioBrowser). */
+  filter?: "all" | ServiceId;
   featuredLayout?: boolean;
 }) {
-  const [filter, setFilter] = useState<"all" | Project["category"]>("all");
   const [open, setOpen] = useState<Project | null>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   const visible =
-    filter === "all" ? projects : projects.filter((p) => p.category === filter);
-  const present = projectCategories.filter((c) =>
-    projects.some((p) => p.category === c.id),
-  );
+    filter === "all"
+      ? projects
+      : projects.filter((p) => p.services.includes(filter));
   // After the dialog has closed (child cleanup runs first), return focus to the card that opened it.
   useEffect(() => {
     if (!open) opener.current?.focus();
@@ -172,25 +172,6 @@ export function ProjectGallery({
   const close = () => setOpen(null);
   return (
     <div>
-      {filterable && (
-        <div
-          role="group"
-          aria-label={labels.filters}
-          className="-mx-5 mb-10 flex gap-2 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:px-0 [scrollbar-width:none]"
-        >
-          {[{ id: "all", label: labels.all }, ...projectCategories].map((c) => (
-            <button
-              key={c.id}
-              type="button"
-              aria-pressed={filter === c.id}
-              onClick={() => setFilter(c.id as typeof filter)}
-              className={`min-h-11 shrink-0 rounded-full border px-5 text-xs transition ${filter === c.id ? "border-white bg-white text-black" : "border-white/25 text-white/70 hover:border-white/60"} ${c.id !== "all" && !present.some((p) => p.id === c.id) ? "opacity-50" : ""}`}
-            >
-              {c.label}
-            </button>
-          ))}
-        </div>
-      )}
       {visible.length === 0 ? (
         <p className="border border-white/10 px-6 py-10 text-sm text-white/55">
           {labels.emptyFiltered}

@@ -6,10 +6,12 @@ import {
 import { getMailConfig, sendContactMail } from "@/lib/mail";
 
 const TYPE_LABELS: Record<string, string> = {
-  drone: "Drone & Aerial Cinematography",
+  "social-media-strategy": "Social Media & Strategy",
+  "hotels-hospitality": "Hotels & Hospitality",
+  "business-commercial": "Business & Commercial",
   "weddings-events": "Weddings & Events",
-  "social-media": "Social Media & Creative Strategy",
-  commercial: "Commercial & Brand Films",
+  "drone-aerial": "Drone & Aerial",
+  "photo-video": "Photo & Video Production",
   other: "Other",
 };
 

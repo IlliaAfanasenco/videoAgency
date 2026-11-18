@@ -93,6 +93,20 @@ export function Hero({ t }: { t: Messages }) {
             >
               {t.hero.description}
             </p>
+            <ul
+              data-hero-copy
+              aria-label={t.hero.tags.join(", ")}
+              className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[9px] uppercase tracking-[.2em] text-white/50 sm:mt-4 sm:gap-x-5 sm:text-[10px]"
+            >
+              {t.hero.tags.map((tag, i) => (
+                <li key={tag} className="flex items-center gap-3 sm:gap-5">
+                  {i > 0 && (
+                    <span aria-hidden="true" className="h-px w-3 bg-gold/60" />
+                  )}
+                  {tag}
+                </li>
+              ))}
+            </ul>
             <div
               data-hero-copy
               className="mt-3.5 flex items-center gap-2.5 max-sm:flex-nowrap sm:mt-5 sm:flex-wrap sm:gap-4 lg:mt-6"

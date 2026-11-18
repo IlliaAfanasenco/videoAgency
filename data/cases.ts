@@ -1,256 +1,312 @@
-import type { Locale } from "@/lib/i18n";
+import { intlLocales, type Locale } from "@/lib/i18n";
+import type { ServiceId } from "@/data/services";
 
 type Localized<T> = Record<Locale, T>;
 
 /**
  * CASE STUDIES.
  *
- * ⚠ MOCK CONTENT: every entry below is fictional (names, places, budgets, scope) and exists only to
- * demonstrate the future portfolio format. To go live, replace an entry with a real project:
- *  - set `mock: false` (or remove the field),
- *  - swap `image` / `gallery` for real frames (optionally add `video`),
- *  - update texts and `priceFrom` / `priceRange` with confirmed figures.
- * Cards, the home section, detail pages, routes and the sitemap all read from this file only.
+ * Two kinds of entries:
+ *  - `mock: true`: FICTIONAL examples (names, places, prices) that only demonstrate the format. The UI
+ *    labels them "Example project". They are not client work.
+ *  - real projects: omit `mock`, fill only what is confirmed. Every content field except the ones
+ *    marked required is optional and its section simply does not render when missing.
+ *
+ * `published: false` keeps an entry out of the site (cards, routes, sitemap) until it is complete.
+ * To go live with a real project: add the real media, fill the confirmed fields, remove `published: false`.
+ * NEVER add invented results, numbers, prices or testimonials.
  */
 export type CaseStudy = {
   slug: string;
-  /** Fictional demo entry. Rendered as a discreet "sample" note; never as a client claim. */
+  /** Fictional demo entry. Rendered with an "Example project" label; never as a client claim. */
   mock?: boolean;
-  category: Localized<string>;
+  /** Defaults to true. Set to false while material is missing. */
+  published?: boolean;
+  /** One or more service categories (drives filtering and labels). */
+  services: ServiceId[];
   title: string;
+  /** Client / business name if it may be shown. */
+  client?: string;
+  location?: Localized<string>;
   /** Short sentence for cards. */
-  summary: Localized<string>;
-  /** Longer intro for the detail page hero. */
-  intro: Localized<string>;
-  location: Localized<string>;
-  type: Localized<string>;
-  goal: Localized<string>;
-  created: Localized<string>;
-  deliverables: Localized<string[]>;
-  /** Short deliverables for the card (a subset, or the same list). */
-  cardDeliverables: Localized<string>;
-  timeline: Localized<string>;
-  /** Starting price in EUR. */
-  priceFrom: number;
-  /** Typical range for comparable projects in EUR. */
-  priceRange: [number, number];
-  suitableFor: Localized<string>;
-  /** Cover image used on the card and in the detail hero. */
-  image: string;
+  summary?: Localized<string>;
+  /** Longer intro for the detail hero. */
+  intro?: Localized<string>;
+  /** Kind of work, e.g. "Social media content". */
+  type?: Localized<string>;
+  /** Task / brief. */
+  goal?: Localized<string>;
+  /** What was done. */
+  created?: Localized<string>;
+  /** Concrete deliverables. */
+  deliverables?: Localized<string[]>;
+  /** Confirmed results only (no invented metrics). */
+  results?: Localized<string[]>;
+  timeline?: Localized<string>;
+  /** Mock cases only. Real cases must not show invented prices. */
+  priceFrom?: number;
+  priceRange?: [number, number];
+  /** Cover image (card + detail hero). Required to publish. */
+  image?: string;
   /** CSS object-position for the cover. */
   focus?: string;
-  /** Selected frames (placeholders until real stills exist). */
-  gallery: string[];
-  /** Optional looping preview video. */
+  /** Selected frames / photos. */
+  gallery?: string[];
+  /** Optional preview video. */
   video?: string;
 };
 
+export type PublishedCase = CaseStudy & { image: string };
+
+const sample = (c: Omit<CaseStudy, "mock"> & { image: string }): CaseStudy => ({
+  ...c,
+  mock: true,
+});
+
 export const cases: CaseStudy[] = [
+  /**
+   * REAL PROJECT, material pending. Valentina's work for a medical practice.
+   * Fill in photos/videos, brief, delivered services and results when the client provides them,
+   * then delete `published: false`. Do not publish with placeholders.
+   */
   {
+    slug: "allgemeinpraxis-meckenbeuren",
+    published: false,
+    services: ["social-media-strategy"],
+    title: "Allgemeinpraxis — Meckenbeuren",
+    client: "Allgemeinpraxis Meckenbeuren",
+    location: {
+      de: "Meckenbeuren",
+      en: "Meckenbeuren",
+      uk: "Меккенбойрен",
+      el: "Μέκενμπόιρεν",
+    },
+    // summary, intro, type, goal, created, deliverables, results, timeline, image, gallery, video: pending
+  },
+  sample({
     slug: "lakeview-wedding-story",
-    mock: true,
-    category: { de: "Hochzeit & Events", en: "Weddings & Events" },
+    services: ["weddings-events", "photo-video"],
     title: "Lakeview Wedding Story",
     summary: {
-      de: "Kinematografische Hochzeitsbegleitung mit Fokus auf Emotion, Atmosphäre und zeitlose Erinnerungen.",
-      en: "Cinematic wedding coverage focused on emotion, atmosphere and timeless memories.",
+      de: "Hochzeitsfilm mit Fokus auf Emotion und Atmosphäre.",
+      en: "Wedding film focused on emotion and atmosphere.",
+      uk: "Весільний фільм, зосереджений на емоціях і атмосфері.",
+      el: "Γαμήλια ταινία με επίκεντρο το συναίσθημα και την ατμόσφαιρα.",
     },
     intro: {
-      de: "Ein Hochzeitstag am See: ruhige Bilder, echte Gefühle und ein Film, den das Paar in zwanzig Jahren noch genauso gern ansieht.",
-      en: "A wedding day by the lake: calm imagery, genuine emotion and a film the couple will still love watching in twenty years.",
+      de: "Ein Hochzeitstag am See: ruhige Bilder, echte Gefühle.",
+      en: "A wedding day by the lake: calm imagery, genuine emotion.",
+      uk: "Весілля біля озера: спокійні кадри, щирі емоції.",
+      el: "Ένας γάμος δίπλα στη λίμνη: ήρεμες εικόνες, αληθινό συναίσθημα.",
     },
-    location: { de: "Bodensee", en: "Lake Constance" },
-    type: { de: "Hochzeitsfilm", en: "Wedding film" },
+    location: {
+      de: "Bodensee",
+      en: "Lake Constance",
+      uk: "Боденське озеро",
+      el: "Λίμνη της Κωνσταντίας",
+    },
+    type: {
+      de: "Hochzeitsfilm",
+      en: "Wedding film",
+      uk: "Весільний фільм",
+      el: "Γαμήλια ταινία",
+    },
     goal: {
-      de: "Die Atmosphäre und die emotionalen Höhepunkte des Tages einfangen – unaufdringlich und ohne gestellte Szenen.",
-      en: "Capture the atmosphere and emotional highlights of the day – unobtrusively and without staged scenes.",
+      de: "Den Tag unaufdringlich und ohne gestellte Szenen einfangen.",
+      en: "Capture the day unobtrusively, without staged scenes.",
+      uk: "Зафільмувати день ненав’язливо, без постановочних сцен.",
+      el: "Να αποτυπωθεί η μέρα διακριτικά, χωρίς σκηνοθετημένες σκηνές.",
     },
     created: {
-      de: "Wir haben den Tag von den Vorbereitungen bis zum ersten Tanz begleitet, mit zwei Kameras, Funkmikrofonen für die Trauung und Drohnenaufnahmen der Uferlandschaft. Im Schnitt entstand ein Highlight-Film mit natürlichem Farbton und ruhigem Rhythmus.",
-      en: "We followed the day from the preparations to the first dance, using two cameras, lavalier audio for the ceremony and drone shots of the shoreline. In the edit, this became a highlight film with a natural colour palette and a calm rhythm.",
+      de: "Begleitung von den Vorbereitungen bis zum ersten Tanz, mit Drohnenaufnahmen der Uferlandschaft.",
+      en: "Coverage from the preparations to the first dance, with drone shots of the shoreline.",
+      uk: "Зйомка від приготувань до першого танцю, з аерокадрами берегової лінії.",
+      el: "Κάλυψη από τις προετοιμασίες έως τον πρώτο χορό, με λήψεις drone της ακτογραμμής.",
     },
     deliverables: {
-      de: ["1 Highlight-Film", "2 vertikale Reels", "Drohnenaufnahmen"],
-      en: ["1 highlight film", "2 vertical reels", "Drone shots"],
-    },
-    cardDeliverables: {
-      de: "Highlight-Film, Social-Teaser, vertikale Reels",
-      en: "Highlight film, social teaser, vertical reels",
+      de: ["Highlight-Film", "2 vertikale Reels", "Drohnenaufnahmen"],
+      en: ["Highlight film", "2 vertical reels", "Drone shots"],
+      uk: ["Хайлайт-фільм", "2 вертикальні reels", "Аерозйомка"],
+      el: ["Highlight film", "2 κάθετα reels", "Λήψεις drone"],
     },
     timeline: {
       de: "1 Drehtag, Lieferung in 10 Tagen",
       en: "1 shooting day, delivery in 10 days",
+      uk: "1 знімальний день, здача за 10 днів",
+      el: "1 ημέρα γυρισμάτων, παράδοση σε 10 ημέρες",
     },
     priceFrom: 900,
     priceRange: [900, 1800],
-    suitableFor: {
-      de: "Paare und Hochzeitsplaner, die mehr als reine Dokumentation möchten.",
-      en: "Couples and planners who want more than plain documentation.",
-    },
     image: "/images/services/weddings-events.jpg",
-    gallery: [
-      "/images/events.jpg",
-      "/images/about/frame.jpg",
-      "/images/services/drone.jpg",
-    ],
-  },
-  {
+    gallery: ["/images/events.jpg", "/images/about/frame.jpg"],
+  }),
+  sample({
     slug: "petra-kitchen-launch",
-    mock: true,
-    category: {
-      de: "Commercial / Food / Social Media",
-      en: "Commercial / Food / Social Media",
-    },
+    services: ["social-media-strategy", "business-commercial"],
     title: "Petra Kitchen Launch",
     summary: {
-      de: "Social-first Visuals und eine Kurzvideo-Kampagne für die Eröffnung eines Restaurants.",
-      en: "Social-first visuals and short-form campaign for a restaurant launch.",
+      de: "Social-first Visuals und Kurzvideos zur Restaurant-Eröffnung.",
+      en: "Social-first visuals and short-form video for a restaurant opening.",
+      uk: "Візуали для соцмереж і короткі відео до відкриття ресторану.",
+      el: "Οπτικό υλικό για social και σύντομα βίντεο για τα εγκαίνια ενός εστιατορίου.",
     },
     intro: {
-      de: "Zur Eröffnung sollte das Restaurant sofort sichtbar sein: appetitliche Bilder, schnelle Schnitte und Inhalte, die für Instagram und TikTok gebaut sind.",
-      en: "For the opening, the restaurant needed to be seen right away: appetising imagery, quick cuts and content built for Instagram and TikTok.",
+      de: "Appetitliche Bilder, schnelle Schnitte, gebaut für Instagram und TikTok.",
+      en: "Appetising imagery and quick cuts, built for Instagram and TikTok.",
+      uk: "Апетитні кадри й динамічний монтаж для Instagram і TikTok.",
+      el: "Λαχταριστές εικόνες και γρήγορο μοντάζ, φτιαγμένα για Instagram και TikTok.",
     },
-    location: { de: "München", en: "Munich" },
-    type: { de: "Social-Kampagne", en: "Social campaign" },
+    location: { de: "München", en: "Munich", uk: "Мюнхен", el: "Μόναχο" },
+    type: {
+      de: "Social-Kampagne",
+      en: "Social campaign",
+      uk: "Кампанія в соцмережах",
+      el: "Καμπάνια social media",
+    },
     goal: {
-      de: "Vor und zur Eröffnung Aufmerksamkeit erzeugen und einen wiedererkennbaren visuellen Stil für die Social-Kanäle etablieren.",
-      en: "Build attention before and at the opening and establish a recognisable visual style for the social channels.",
+      de: "Aufmerksamkeit zur Eröffnung und ein wiedererkennbarer Stil für die Kanäle.",
+      en: "Attention at the opening and a recognisable style for the channels.",
+      uk: "Увага до відкриття та впізнаваний стиль каналів.",
+      el: "Προσοχή στα εγκαίνια και ένα αναγνωρίσιμο ύφος για τα κανάλια.",
     },
     created: {
-      de: "Ein Konzepttag in Küche und Gastraum: Markenclip, fünf Reels mit klarer Serien-Optik und ein Set an Food-Visuals für Menü, Website und Anzeigen.",
-      en: "One concept day in the kitchen and dining room: a brand clip, five reels with a consistent series look and a set of food visuals for the menu, website and ads.",
+      de: "Ein Konzepttag in Küche und Gastraum: Markenclip, Reels in Serien-Optik, Food-Visuals.",
+      en: "One concept day in kitchen and dining room: brand clip, reels in a series look, food visuals.",
+      uk: "Один концептуальний день на кухні та в залі: брендовий ролик, reels в єдиному стилі, фуд-візуали.",
+      el: "Μία ημέρα γυρισμάτων σε κουζίνα και σαλόνι: βίντεο brand, reels σε ενιαίο ύφος, φωτογραφίες φαγητού.",
     },
     deliverables: {
-      de: ["1 Markenclip", "5 Reels", "Food-Visuals"],
-      en: ["1 brand clip", "5 reels", "Food visuals"],
-    },
-    cardDeliverables: {
-      de: "Markenclip, 5 Reels, Food-Visuals",
-      en: "Brand clip, 5 reels, food visuals",
+      de: ["Markenclip", "5 Reels", "Food-Visuals"],
+      en: ["Brand clip", "5 reels", "Food visuals"],
+      uk: ["Брендовий ролик", "5 reels", "Фуд-візуали"],
+      el: ["Βίντεο brand", "5 reels", "Εικόνες φαγητού"],
     },
     timeline: {
       de: "1–2 Drehtage, Lieferung in 14 Tagen",
       en: "1–2 shooting days, delivery in 14 days",
+      uk: "1–2 знімальні дні, здача за 14 днів",
+      el: "1–2 ημέρες γυρισμάτων, παράδοση σε 14 ημέρες",
     },
     priceFrom: 1200,
     priceRange: [1200, 2600],
-    suitableFor: {
-      de: "Restaurants, Cafés und Food-Marken mit anstehender Eröffnung oder neuer Karte.",
-      en: "Restaurants, cafés and food brands with an upcoming opening or new menu.",
-    },
     image: "/images/services/social-media.jpg",
-    gallery: [
-      "/images/services/commercial.jpg",
-      "/images/industry.jpg",
-      "/images/events.jpg",
-    ],
-  },
-  {
+    gallery: ["/images/services/commercial.jpg", "/images/industry.jpg"],
+  }),
+  sample({
     slug: "alpine-escape",
-    mock: true,
-    category: {
-      de: "Hospitality / Commercial",
-      en: "Hospitality / Commercial",
-    },
+    services: ["hotels-hospitality", "drone-aerial"],
     title: "Alpine Escape",
     summary: {
-      de: "Ein hochwertiger Imagefilm für ein Boutique-Hotel mit Spa-Erlebnis.",
-      en: "A premium visual identity film for a boutique hotel and spa experience.",
+      de: "Imagefilm für ein Boutique-Hotel mit Spa.",
+      en: "Brand film for a boutique hotel and spa.",
+      uk: "Брендовий фільм для бутик-готелю зі спа.",
+      el: "Εταιρική ταινία για ένα boutique ξενοδοχείο με spa.",
     },
     intro: {
-      de: "Ruhe, Weite und Handwerk: ein Film, der nicht Zimmer zeigt, sondern das Gefühl, anzukommen.",
-      en: "Calm, space and craft: a film that doesn't just show rooms, but the feeling of arriving.",
+      de: "Ruhe, Weite, Handwerk: das Gefühl anzukommen.",
+      en: "Calm, space, craft: the feeling of arriving.",
+      uk: "Спокій, простір, майстерність: відчуття прибуття.",
+      el: "Ηρεμία, χώρος, τέχνη: η αίσθηση της άφιξης.",
     },
-    location: { de: "Tirol", en: "Tyrol" },
-    type: { de: "Markenfilm", en: "Brand film" },
+    location: { de: "Tirol", en: "Tyrol", uk: "Тіроль", el: "Τιρόλο" },
+    type: {
+      de: "Markenfilm",
+      en: "Brand film",
+      uk: "Брендовий фільм",
+      el: "Εταιρική ταινία",
+    },
     goal: {
-      de: "Das Haus als Rückzugsort positionieren und Direktbuchungen mit starkem Bildmaterial unterstützen.",
-      en: "Position the hotel as a retreat and support direct bookings with strong visual material.",
+      de: "Das Haus als Rückzugsort positionieren und Direktbuchungen stützen.",
+      en: "Position the hotel as a retreat and support direct bookings.",
+      uk: "Позиціонувати готель як місце відпочинку й підтримати прямі бронювання.",
+      el: "Να τοποθετηθεί το ξενοδοχείο ως καταφύγιο και να ενισχυθούν οι απευθείας κρατήσεις.",
     },
     created: {
-      de: "Zwei Drehtage über Sonnenaufgang und Abendlicht: Markenfilm, Drohnenaufnahmen von Anreise und Landschaft sowie kurze Bildclips für Anzeigen und Buchungsseite.",
-      en: "Two shooting days covering sunrise and evening light: a brand film, drone footage of the approach and landscape, and short image clips for ads and the booking page.",
+      de: "Zwei Drehtage zu Sonnenaufgang und Abendlicht, inklusive Drohnenaufnahmen.",
+      en: "Two shooting days at sunrise and evening light, including drone footage.",
+      uk: "Два знімальні дні на сході сонця та у вечірньому світлі, включно з аерозйомкою.",
+      el: "Δύο ημέρες γυρισμάτων σε ανατολή και βραδινό φως, με λήψεις drone.",
     },
     deliverables: {
-      de: ["1 Markenfilm", "Drohnenaufnahmen", "Bildclips für Anzeigen"],
-      en: ["1 brand film", "Drone footage", "Image clips for ads"],
-    },
-    cardDeliverables: {
-      de: "Markenfilm, Drohnenaufnahmen, Bildclips für Anzeigen",
-      en: "Brand film, drone footage, image clips for ads",
+      de: ["Markenfilm", "Drohnenaufnahmen", "Clips für Anzeigen"],
+      en: ["Brand film", "Drone footage", "Clips for ads"],
+      uk: ["Брендовий фільм", "Аерозйомка", "Кліпи для реклами"],
+      el: ["Εταιρική ταινία", "Λήψεις drone", "Κλιπ για διαφημίσεις"],
     },
     timeline: {
       de: "2 Drehtage, Lieferung in 3 Wochen",
       en: "2 shooting days, delivery in 3 weeks",
+      uk: "2 знімальні дні, здача за 3 тижні",
+      el: "2 ημέρες γυρισμάτων, παράδοση σε 3 εβδομάδες",
     },
     priceFrom: 2400,
     priceRange: [2400, 4800],
-    suitableFor: {
-      de: "Hotels, Resorts und Boutique-Häuser, die ihre Marke emotional erzählen wollen.",
-      en: "Hotels, resorts and boutique properties that want to tell their brand story emotionally.",
-    },
     image: "/images/services/drone.jpg",
-    gallery: [
-      "/images/mountain-cta.jpg",
-      "/images/fpv-coast.jpg",
-      "/images/real-estate.jpg",
-    ],
-  },
-  {
+    gallery: ["/images/mountain-cta.jpg", "/images/fpv-coast.jpg"],
+  }),
+  sample({
     slug: "momentum-launch-night",
-    mock: true,
-    category: {
-      de: "Events / Brand Experience",
-      en: "Events / Brand Experience",
-    },
+    services: ["weddings-events", "business-commercial"],
     title: "Momentum Launch Night",
     summary: {
-      de: "Schnelle Eventbegleitung für einen Produktlaunch, geliefert als kinematografisches Aftermovie.",
-      en: "Fast-paced event coverage for a product launch with cinematic aftermovie delivery.",
+      de: "Produktlaunch-Event als kinematografisches Aftermovie.",
+      en: "Product launch event as a cinematic aftermovie.",
+      uk: "Захід із запуску продукту як кінематографічний афтермуві.",
+      el: "Εκδήλωση παρουσίασης προϊόντος ως κινηματογραφικό aftermovie.",
     },
     intro: {
-      de: "Ein Launch-Abend mit Bühne, Licht und Publikum – am nächsten Morgen schon als Teaser online, wenige Tage später als voller Film.",
-      en: "A launch evening with stage, lighting and crowd – online as a teaser the next morning and as a full film a few days later.",
+      de: "Bühne, Licht, Publikum: am nächsten Morgen als Teaser online.",
+      en: "Stage, lighting, crowd: online as a teaser the next morning.",
+      uk: "Сцена, світло, публіка: наступного ранку онлайн у вигляді тизера.",
+      el: "Σκηνή, φωτισμός, κοινό: online ως teaser το επόμενο πρωί.",
     },
-    location: { de: "Berlin", en: "Berlin" },
-    type: { de: "Event-Recap", en: "Event recap" },
+    location: { de: "Berlin", en: "Berlin", uk: "Берлін", el: "Βερολίνο" },
+    type: {
+      de: "Event-Recap",
+      en: "Event recap",
+      uk: "Підсумок події",
+      el: "Αφηγηματική κάλυψη εκδήλωσης",
+    },
     goal: {
-      de: "Die Energie des Abends festhalten und schnell nutzbares Material für Presse und Social Media liefern.",
-      en: "Capture the energy of the evening and deliver material that can be used quickly for press and social media.",
+      de: "Die Energie des Abends festhalten, schnell nutzbar für Presse und Social Media.",
+      en: "Capture the energy of the evening, quickly usable for press and social.",
+      uk: "Зберегти енергію вечора, швидко придатну для преси та соцмереж.",
+      el: "Να αποτυπωθεί η ενέργεια της βραδιάς, άμεσα αξιοποιήσιμη για τύπο και social.",
     },
     created: {
-      de: "Ein Team mit zwei Kameras begleitete Aufbau, Bühne und Gäste. Noch in der Nacht entstand ein Teaser, anschließend ein Aftermovie mit Social-Cutdowns.",
-      en: "A two-camera team covered setup, stage and guests. A teaser was cut the same night, followed by an aftermovie with social cutdowns.",
+      de: "Zwei Kameras begleiteten Aufbau, Bühne und Gäste; Teaser noch in der Nacht, danach das Aftermovie.",
+      en: "Two cameras covered setup, stage and guests; teaser the same night, aftermovie after.",
+      uk: "Дві камери знімали монтаж, сцену та гостей; тизер — тієї ж ночі, афтермуві — згодом.",
+      el: "Δύο κάμερες κάλυψαν την προετοιμασία, τη σκηνή και τους καλεσμένους· teaser την ίδια νύχτα, aftermovie αργότερα.",
     },
     deliverables: {
-      de: ["1 Eventfilm", "Teaser-Schnitt", "Social-Clips"],
-      en: ["1 event film", "Teaser edit", "Social clips"],
-    },
-    cardDeliverables: {
-      de: "Eventfilm, Teaser-Schnitt, Social-Clips",
-      en: "Event film, teaser edit, social clips",
+      de: ["Eventfilm", "Teaser", "Social-Clips"],
+      en: ["Event film", "Teaser", "Social clips"],
+      uk: ["Фільм про подію", "Тизер", "Кліпи для соцмереж"],
+      el: ["Ταινία εκδήλωσης", "Teaser", "Κλιπ για social"],
     },
     timeline: {
       de: "1 Abend, Teaser in 24 h, Film in 7 Tagen",
       en: "1 evening, teaser in 24 h, film in 7 days",
+      uk: "1 вечір, тизер за 24 год, фільм за 7 днів",
+      el: "1 βράδυ, teaser σε 24 ώρες, ταινία σε 7 ημέρες",
     },
     priceFrom: 1100,
     priceRange: [1100, 2400],
-    suitableFor: {
-      de: "Marken und Agenturen mit Produktlaunches, Firmenevents oder Konferenzen.",
-      en: "Brands and agencies with product launches, corporate events or conferences.",
-    },
     image: "/images/events.jpg",
-    gallery: [
-      "/images/services/commercial.jpg",
-      "/images/automotive.jpg",
-      "/images/services/weddings-events.jpg",
-    ],
-  },
+    gallery: ["/images/services/commercial.jpg", "/images/automotive.jpg"],
+  }),
 ];
 
-export const getCases = () => cases;
-export const getCase = (slug: string) => cases.find((c) => c.slug === slug);
+const isPublished = (c: CaseStudy): c is PublishedCase =>
+  c.published !== false && !!c.image;
+
+/** Cases visible on the site. */
+export const getCases = (): PublishedCase[] => cases.filter(isPublished);
+export const getCase = (slug: string) =>
+  getCases().find((c) => c.slug === slug);
+/** Entries still waiting for material (for the content checklist). */
+export const getPendingCases = () => cases.filter((c) => !isPublished(c));
 
 export const formatPrice = (amount: number, locale: Locale) =>
-  `${new Intl.NumberFormat(locale === "de" ? "de-DE" : "en-GB").format(amount)} €`;
+  `${new Intl.NumberFormat(intlLocales[locale]).format(amount)} €`;

@@ -1,9 +1,11 @@
 // Validation shared by the browser form and the API route (single source of truth).
 export const projectTypeIds = [
-  "drone",
+  "social-media-strategy",
+  "hotels-hospitality",
+  "business-commercial",
   "weddings-events",
-  "social-media",
-  "commercial",
+  "drone-aerial",
+  "photo-video",
   "other",
 ] as const;
 export type ProjectTypeId = (typeof projectTypeIds)[number];

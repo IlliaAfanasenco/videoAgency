@@ -19,6 +19,8 @@ npm start
 | Route | Content |
 |---|---|
 | `/[locale]` | Hero, About, What We Do, Selected Work, Our Approach, Why FRAME NO. 9, Contact |
+| `/[locale]/services/[slug]` | Detail page per service (six) |
+| `/[locale]/work/[slug]` | Case detail |
 | `/[locale]/about` | About page |
 | `/[locale]/portfolio` | Portfolio with category filters and video dialog |
 | `/[locale]/impressum`, `/[locale]/datenschutz` | **Draft placeholders**, not legal documents (noindex) |
@@ -28,7 +30,7 @@ npm start
 
 - `app/[locale]`: localized pages and metadata. `app/sitemap.ts`, `app/robots.ts`.
 - `messages/de.ts`, `messages/en.ts`: all UI text (typed; English must match the German shape).
-- `data/projects.ts`: portfolio projects. `data/services.ts`: the four service categories with full offering lists for future detail pages. `data/contact.ts`: public contact details from environment.
+- `data/projects.ts`: portfolio projects. `data/services.ts`: the six service categories (ids, copy DE/EN, media, offerings). `data/cases.ts`: case studies, each linked to one or more services; unfinished real cases use `published: false`. `data/contact.ts`: public contact details from environment.
 - `lib/contact-schema.ts` (shared validation), `lib/mail.ts` (sending), `lib/i18n.ts`, `lib/gsap.ts`.
 - `components/sections`, `components/ui`, `components/layout`, `components/animation/Motion.tsx`.
 
@@ -39,7 +41,8 @@ Nothing below is invented; empty places render nothing or an honest empty state.
 - **Portfolio**: `published` in `data/projects.ts` is empty. Add one object per confirmed project (see the comment there) and put files in `public/portfolio/`. `NEXT_PUBLIC_PORTFOLIO_DEMO=1` shows labelled demo tiles for layout testing only.
 - **Contact details**: set `NEXT_PUBLIC_CONTACT_EMAIL` and `NEXT_PUBLIC_INSTAGRAM_URL`.
 - **Legal pages**: Impressum and Datenschutz need operator data and reviewed legal text.
-- **Service detail pages**: set `href` per service in `data/services.ts` once the pages exist.
+- **Service media**: entries with `placeholder: true` in `data/services.ts` borrow footage from other categories until original material exists.
+- **Allgemeinpraxis — Meckenbeuren**: prepared in `data/cases.ts` (`published: false`); add real media/brief/results, then remove the flag.
 
 ## Contact form
 

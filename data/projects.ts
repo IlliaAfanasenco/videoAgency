@@ -1,20 +1,13 @@
 import type { Locale } from "@/lib/i18n";
+import type { ServiceId } from "@/data/services";
 
 type Localized<T> = Record<Locale, T>;
-
-export const projectCategories = [
-  { id: "drone", label: "Drone" },
-  { id: "weddings-events", label: "Weddings & Events" },
-  { id: "social-media", label: "Social Media" },
-  { id: "commercial", label: "Commercial" },
-] as const;
-
-export type ProjectCategory = (typeof projectCategories)[number]["id"];
 
 export type Project = {
   id: string;
   slug: string;
-  category: ProjectCategory;
+  /** One or more service categories (used by the portfolio filter). */
+  services: ServiceId[];
   title: Localized<string>;
   /** Optional short line shown in the video dialog. */
   description?: Localized<string>;
@@ -34,7 +27,7 @@ export type Project = {
  * PUBLISHED PROJECTS. Add one object per confirmed client project:
  *
  * {
- *   id: "…", slug: "…", category: "drone",
+ *   id: "…", slug: "…", services: ["drone-aerial"],
  *   title: { de: "…", en: "…" },
  *   image: "/portfolio/<slug>.jpg", video: "/portfolio/<slug>.mp4",
  *   featured: true, order: 1,
@@ -51,16 +44,22 @@ const published: Project[] = [];
 const demo: Project[] =
   process.env.NEXT_PUBLIC_PORTFOLIO_DEMO === "1"
     ? [
-        ["drone", "/images/services/drone.jpg"],
+        ["drone-aerial", "/images/services/drone.jpg"],
         ["weddings-events", "/images/services/weddings-events.jpg"],
-        ["commercial", "/images/services/commercial.jpg"],
-        ["social-media", "/images/services/social-media.jpg"],
-        ["drone", "/images/services/drone.jpg"],
-      ].map(([category, image], i) => ({
+        ["business-commercial", "/images/services/commercial.jpg"],
+        ["social-media-strategy", "/images/services/social-media.jpg"],
+        ["hotels-hospitality", "/images/services/drone.jpg"],
+        ["photo-video", "/images/services/commercial.jpg"],
+      ].map(([service, image], i) => ({
         id: `demo-${i + 1}`,
         slug: `demo-${i + 1}`,
-        category: category as ProjectCategory,
-        title: { de: `Demo ${i + 1}`, en: `Demo ${i + 1}` },
+        services: [service as ServiceId],
+        title: {
+          de: `Demo ${i + 1}`,
+          en: `Demo ${i + 1}`,
+          uk: `Демо ${i + 1}`,
+          el: `Demo ${i + 1}`,
+        },
         image,
         video: "/videos/hero-loop-desktop.mp4",
         featured: i < 3,

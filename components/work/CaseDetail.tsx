@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Messages } from "@/messages/de";
 import type { Locale } from "@/lib/i18n";
-import { formatPrice, type CaseStudy } from "@/data/cases";
+import { formatPrice, type PublishedCase } from "@/data/cases";
+import { getService } from "@/data/services";
 import { Button } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
@@ -28,13 +29,13 @@ export function CaseDetail({
   locale,
   t,
 }: {
-  item: CaseStudy;
-  next?: CaseStudy;
+  item: PublishedCase;
+  next?: PublishedCase;
   locale: Locale;
   t: Messages;
 }) {
   const d = t.work.cases.detail;
-  const [min, max] = item.priceRange;
+  const labels = item.services.map((id) => getService(id).short).join(" · ");
   return (
     <main
       id="main-content"
@@ -61,136 +62,169 @@ export function CaseDetail({
             ← {d.back}
           </Link>
           <p className="text-[10px] uppercase tracking-[.2em] text-gold">
-            {item.category[locale]}
+            {labels}
           </p>
           <h1 className="mt-4 text-[clamp(2.6rem,7vw,7rem)] font-light leading-[1.02] tracking-[-.05em]">
             {item.title}
           </h1>
-          <p className="mt-6 max-w-2xl text-base font-light leading-8 text-white/80 lg:text-xl lg:leading-9">
-            {item.intro[locale]}
-          </p>
+          {item.intro && (
+            <p className="mt-6 max-w-2xl text-base font-light leading-8 text-white/80 lg:text-xl lg:leading-9">
+              {item.intro[locale]}
+            </p>
+          )}
         </div>
       </section>
 
       {/* Facts */}
       <section className="container-x border-b border-white/10 py-10">
-        <dl className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-          <Fact label={d.project}>{item.title}</Fact>
-          <Fact label={d.location}>{item.location[locale]}</Fact>
-          <Fact label={d.type}>{item.type[locale]}</Fact>
-          <Fact label={d.timeline}>{item.timeline[locale]}</Fact>
+        <dl className="grid grid-cols-2 gap-6 lg:grid-cols-5">
+          <Fact label={d.project}>{item.client ?? item.title}</Fact>
+          <Fact label={d.services}>
+            {item.services.map((id) => getService(id).title).join(", ")}
+          </Fact>
+          {item.location && (
+            <Fact label={d.location}>{item.location[locale]}</Fact>
+          )}
+          {item.type && <Fact label={d.type}>{item.type[locale]}</Fact>}
+          {item.timeline && (
+            <Fact label={d.timeline}>{item.timeline[locale]}</Fact>
+          )}
         </dl>
       </section>
 
       {/* Goal / created / deliverables */}
       <section className="container-x grid gap-14 py-16 lg:grid-cols-[1.1fr_.9fr] lg:gap-24 lg:py-28">
         <div className="space-y-12">
-          <div data-reveal>
-            <SectionLabel>{d.goal}</SectionLabel>
-            <p className="max-w-xl text-lg font-light leading-8 text-white/80">
-              {item.goal[locale]}
-            </p>
-          </div>
-          <div data-reveal>
-            <SectionLabel>{d.created}</SectionLabel>
-            <p className="max-w-xl text-base leading-8 text-white/65">
-              {item.created[locale]}
-            </p>
-          </div>
-          <p data-reveal className="max-w-xl text-sm leading-7 text-white/55">
-            <span className="text-white/80">{d.suitable}: </span>
-            {item.suitableFor[locale]}
-          </p>
+          {item.goal && (
+            <div data-reveal>
+              <SectionLabel>{d.goal}</SectionLabel>
+              <p className="max-w-xl text-lg font-light leading-8 text-white/80">
+                {item.goal[locale]}
+              </p>
+            </div>
+          )}
+          {item.created && (
+            <div data-reveal>
+              <SectionLabel>{d.created}</SectionLabel>
+              <p className="max-w-xl text-base leading-8 text-white/65">
+                {item.created[locale]}
+              </p>
+            </div>
+          )}
         </div>
         <div data-reveal className="space-y-12">
-          <div>
-            <SectionLabel>{d.deliverables}</SectionLabel>
-            <ul className="border-t border-white/12">
-              {item.deliverables[locale].map((x) => (
-                <li
-                  key={x}
-                  className="flex items-center gap-4 border-b border-white/12 py-4 text-base font-light"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="size-1.5 rounded-full bg-gold"
-                  />
-                  {x}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="border border-white/12 p-6 sm:p-8">
-            <p className="text-[10px] uppercase tracking-[.2em] text-white/45">
-              {d.investment}
-            </p>
-            <p className="mt-3 text-4xl font-light tracking-[-.03em]">
-              <span className="mr-2 text-sm text-white/50">{d.startingAt}</span>
-              {formatPrice(item.priceFrom, locale)}
-            </p>
-            <p className="mt-6 border-t border-white/12 pt-6 text-sm leading-7 text-white/65">
-              {d.similarLead}{" "}
-              <strong className="font-normal text-white">
+          {item.deliverables && (
+            <div>
+              <SectionLabel>{d.deliverables}</SectionLabel>
+              <ul className="border-t border-white/12">
+                {item.deliverables[locale].map((x) => (
+                  <li
+                    key={x}
+                    className="flex items-center gap-4 border-b border-white/12 py-4 text-base font-light"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="size-1.5 rounded-full bg-gold"
+                    />
+                    {x}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {item.results && (
+            <div>
+              <SectionLabel>{d.results}</SectionLabel>
+              <ul className="border-t border-white/12">
+                {item.results[locale].map((x) => (
+                  <li
+                    key={x}
+                    className="border-b border-white/12 py-4 text-base font-light"
+                  >
+                    {x}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {item.priceFrom !== undefined && item.priceRange && (
+            <div className="border border-white/12 p-6 sm:p-8">
+              <p className="text-[10px] uppercase tracking-[.2em] text-white/45">
+                {d.investment}
+              </p>
+              <p className="mt-3 text-4xl font-light tracking-[-.03em]">
+                <span className="mr-2 text-sm text-white/50">
+                  {d.startingAt}
+                </span>
                 {formatPrice(item.priceFrom, locale)}
-              </strong>
-              . {d.similarRange}{" "}
-              <strong className="font-normal text-white">
-                {formatPrice(min, locale)} – {formatPrice(max, locale)}
-              </strong>
-              .
-            </p>
-            <p className="mt-3 text-xs leading-6 text-white/45">
-              {d.similarNote}
-            </p>
-          </div>
+              </p>
+              <p className="mt-6 border-t border-white/12 pt-6 text-sm leading-7 text-white/65">
+                {d.similarLead}{" "}
+                <strong className="font-normal text-white">
+                  {formatPrice(item.priceFrom, locale)}
+                </strong>
+                . {d.similarRange}{" "}
+                <strong className="font-normal text-white">
+                  {formatPrice(item.priceRange[0], locale)} –{" "}
+                  {formatPrice(item.priceRange[1], locale)}
+                </strong>
+                .
+              </p>
+              <p className="mt-3 text-xs leading-6 text-white/45">
+                {d.similarNote}
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
       {/* Gallery */}
-      <section className="container-x pb-16 lg:pb-28">
-        <div data-reveal>
-          <SectionLabel>{d.gallery}</SectionLabel>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:gap-6">
-          <div
-            data-reveal
-            className="relative aspect-video overflow-hidden bg-[#111] sm:col-span-2 sm:aspect-[21/9]"
-          >
-            <Image
-              src={item.image}
-              alt=""
-              fill
-              sizes="(max-width: 1440px) 100vw, 1312px"
-              className="object-cover brightness-[.7]"
-            />
-            <span className="absolute inset-0 bg-black/25" />
-            <span
-              aria-hidden="true"
-              className="absolute left-1/2 top-1/2 flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-black/30 backdrop-blur-sm"
-            >
-              ▶
-            </span>
-            <span className="absolute bottom-4 left-4 text-[10px] uppercase tracking-[.2em] text-white/70 sm:bottom-6 sm:left-6">
-              {d.teaser}
-            </span>
+      {item.gallery && item.gallery.length > 0 && (
+        <section className="container-x pb-16 lg:pb-28">
+          <div data-reveal>
+            <SectionLabel>{d.gallery}</SectionLabel>
           </div>
-          {item.gallery.slice(0, 2).map((src) => (
+          <div className="grid gap-4 sm:grid-cols-2 lg:gap-6">
             <div
-              key={src}
               data-reveal
-              className="relative aspect-video overflow-hidden bg-[#111]"
+              className="relative aspect-video overflow-hidden bg-[#111] sm:col-span-2 sm:aspect-[21/9]"
             >
               <Image
-                src={src}
+                src={item.image}
                 alt=""
                 fill
-                sizes="(max-width: 639px) 100vw, 50vw"
-                className="object-cover brightness-[.8]"
+                sizes="(max-width: 1440px) 100vw, 1312px"
+                className="object-cover brightness-[.7]"
               />
+              <span className="absolute inset-0 bg-black/25" />
+              <span
+                aria-hidden="true"
+                className="absolute left-1/2 top-1/2 flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-black/30 backdrop-blur-sm"
+              >
+                ▶
+              </span>
+              <span className="absolute bottom-4 left-4 text-[10px] uppercase tracking-[.2em] text-white/70 sm:bottom-6 sm:left-6">
+                {d.teaser}
+              </span>
             </div>
-          ))}
-        </div>
-      </section>
+            {item.gallery.slice(0, 2).map((src) => (
+              <div
+                key={src}
+                data-reveal
+                className="relative aspect-video overflow-hidden bg-[#111]"
+              >
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  sizes="(max-width: 639px) 100vw, 50vw"
+                  className="object-cover brightness-[.8]"
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="border-t border-white/10 py-20 text-center lg:py-32">

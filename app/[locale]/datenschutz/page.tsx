@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { pageMetadata } from "@/lib/seo";
 import { isLocale, getMessages } from "@/lib/i18n";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -13,10 +14,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  return {
-    title: `${getMessages(locale).legal.datenschutz.title} | FRAME NO. 9`,
-    robots: { index: false, follow: false },
-  };
+  return pageMetadata({
+    locale,
+    path: "/datenschutz",
+    title: getMessages(locale).legal.datenschutz.title,
+    noindex: true,
+  });
 }
 
 export default async function Page({

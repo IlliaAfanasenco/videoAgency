@@ -8,13 +8,22 @@ export function LoopVideo({
   poster,
   className = "",
   style,
+  active = true,
 }: {
   src: string;
   poster: string;
   className?: string;
   style?: React.CSSProperties;
+  /** When false the clip stays paused (e.g. a hidden layer of a stage). */
+  active?: boolean;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
+  const activeRef = useRef(active);
+  const syncRef = useRef<() => void>(() => {});
+  useEffect(() => {
+    activeRef.current = active;
+    syncRef.current();
+  }, [active]);
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
@@ -23,10 +32,11 @@ export function LoopVideo({
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     let near = false;
     const sync = () => {
-      if (near && !reduced.matches && !document.hidden)
+      if (near && activeRef.current && !reduced.matches && !document.hidden)
         v.play().catch(() => {});
       else v.pause();
     };
+    syncRef.current = sync;
     const io = new IntersectionObserver(
       ([e]) => {
         near = e.isIntersecting;

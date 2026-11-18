@@ -6,11 +6,19 @@ export const en: Messages = {
   skip: "Skip to content",
   menu: "Menu",
   close: "Close",
+  language: "Language",
+  meta: {
+    title:
+      "FRAME NO. 9 | Creative Agency for Strategy, Social Media & Production",
+    description:
+      "FRAME NO. 9 is a creative agency: creative strategy, social media, photo and video production, hotels & business, weddings & events and drone footage.",
+  },
   hero: {
     label: "FRAME NO. 9 · CREATIVE AGENCY",
     lines: ["We create", "what moves", "your brand."],
     description:
-      "Cinematic video with camera and drone – for brands, weddings, events and social media.",
+      "Creative strategy, social media, photo & video production — all in one agency.",
+    tags: ["Strategy", "Content", "Production"],
     philosophy: ["One frame captures a moment.", "Nine frames tell a story."],
     explore: "Explore projects",
   },
@@ -19,9 +27,8 @@ export const en: Messages = {
     title: "Our work speaks\nin stories.",
     action: "Explore all projects",
     cases: {
-      intro:
-        "Selected case studies that show how stories turn into cinematic brand experiences.",
-      note: "Example projects · sample format for upcoming case studies",
+      intro: "Selected projects. Frame by frame.",
+      note: "Example projects · placeholders for upcoming case studies",
       from: "from",
       deliverables: "Deliverables",
       viewCase: "View case",
@@ -33,7 +40,9 @@ export const en: Messages = {
         location: "Location",
         type: "Type",
         category: "Category",
-        goal: "Client goal",
+        goal: "Brief",
+        services: "Services",
+        results: "Results",
         created: "What we created",
         deliverables: "Deliverables",
         timeline: "Timeline",
@@ -68,14 +77,13 @@ export const en: Messages = {
   portfolio: {
     label: "PORTFOLIO",
     title: "Portfolio",
-    intro:
-      "Selected films across Drone, Weddings & Events, Social Media and Commercial.",
+    intro: "Selected work across all six disciplines.",
   },
   why: {
     label: "WHY FRAME NO. 9",
     title: "Different perspectives.\nOne creative vision.",
     closing: "Your vision.\nOur perspective.",
-    lead: "FRAME NO. 9 combines creative thinking, a cinematic approach and modern technology to create individual visual stories.",
+    lead: "Creative thinking, a cinematic hand and modern technology – visuals made for your brand.",
     items: [
       {
         title: "Cinematic Storytelling",
@@ -121,8 +129,8 @@ export const en: Messages = {
         label: "PHILOSOPHY",
         title: "Creativity meets strategy.",
         text: [
-          "Good images don't happen by chance. Every project starts with a clear thought: what should be said, to whom, and with what feeling?",
-          "That is why we think creativity and strategy together. The idea gives the image direction, the strategy gives the idea impact – content that moves.",
+          "Good images don't happen by chance: what should be said, to whom, and with what feeling?",
+          "The idea gives the image direction, the strategy gives the idea impact.",
         ],
       },
       perspective: {
@@ -154,7 +162,7 @@ export const en: Messages = {
       process: {
         label: "FROM IDEA TO EXECUTION",
         title: "From idea to execution.",
-        text: "It starts with a conversation: we understand your project and your brand. From that we develop the concept and visual direction, produce with camera and drone, and deliver edited, colour-graded material – ready for your channels.",
+        text: "Conversation, concept, production, finished content – ready for your channels.",
         link: "See our process",
       },
       closing: {
@@ -167,6 +175,15 @@ export const en: Messages = {
     label: "WHAT WE DO",
     title: "Creative solutions.\nUnique perspectives.",
     more: "Learn more",
+    detail: {
+      back: "All services",
+      offerings: "What we offer",
+      related: "Selected projects",
+      noProjects: "Projects in this category are coming soon.",
+      cta: "Start a project",
+      ctaTitle: "Let's talk about your project.",
+      listLabel: "All services",
+    },
   },
   process: {
     label: "PROCESS",
@@ -174,25 +191,25 @@ export const en: Messages = {
     steps: [
       {
         title: "Discover",
-        text: "We understand your project, your goals, your brand and your values.",
+        text: "We understand project, goals and brand.",
       },
       {
         title: "Create",
-        text: "We develop the creative concept and visual direction, and plan the production.",
+        text: "Concept, visual direction, planning.",
       },
       {
         title: "Produce",
-        text: "Professional filming, visual storytelling and the realisation of the concept.",
+        text: "Filming and realising the concept.",
       },
       {
         title: "Deliver",
-        text: "Editing, colour grading, sound design, final finishing and hand-over of the material.",
+        text: "Editing, colour grading, sound, hand-over.",
       },
     ],
   },
   contact: {
     title: "Have a vision?\nLet's bring it to life.",
-    text: "Whether commercial film, professional drone footage, wedding, event or creative campaign – every project begins with a conversation.",
+    text: "Strategy, social media, photo, film or drone – every project begins with a conversation.",
     slogan: "Let's create something remarkable.",
     direct: "Get in touch",
     email: "Email",
@@ -214,10 +231,12 @@ export const en: Messages = {
       successTitle: "Thank you for your message.",
       successText: "We will get back to you as soon as possible.",
       types: [
-        "Drone & Aerial Cinematography",
+        "Social Media & Strategy",
+        "Hotels & Hospitality",
+        "Business & Commercial",
         "Weddings & Events",
-        "Social Media & Creative Strategy",
-        "Commercial & Brand Films",
+        "Drone & Aerial",
+        "Photo & Video Production",
         "Other",
       ],
       errors: {

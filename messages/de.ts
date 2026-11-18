@@ -5,11 +5,19 @@ export const de = {
   skip: "Zum Inhalt",
   menu: "Menü",
   close: "Schließen",
+  language: "Sprache",
+  meta: {
+    title:
+      "FRAME NO. 9 | Creative Agency für Strategie, Social Media & Produktion",
+    description:
+      "FRAME NO. 9 ist eine Creative Agency: Creative Strategy, Social Media, Foto- und Videoproduktion, Hotels & Business, Hochzeiten & Events, Drohnenaufnahmen.",
+  },
   hero: {
     label: "FRAME NO. 9 · CREATIVE AGENCY",
     lines: ["We create", "what moves", "your brand."],
     description:
-      "Kinematografische Videos mit Kamera und Drohne – für Marken, Hochzeiten, Events und Social Media.",
+      "Creative Strategy, Social Media, Foto- und Videoproduktion – alles aus einer Hand.",
+    tags: ["Strategie", "Content", "Produktion"],
     philosophy: ["One frame captures a moment.", "Nine frames tell a story."],
     explore: "Projekte entdecken",
   },
@@ -18,9 +26,8 @@ export const de = {
     title: "Our work speaks\nin stories.",
     action: "Alle Projekte entdecken",
     cases: {
-      intro:
-        "Ausgewählte Fallstudien, die zeigen, wie aus Geschichten kinematografische Markenerlebnisse werden.",
-      note: "Beispielprojekte · Musterformat für kommende Fallstudien",
+      intro: "Ausgewählte Projekte. Bild für Bild.",
+      note: "Beispielprojekte · Platzhalter für kommende Fallstudien",
       from: "ab",
       deliverables: "Umfang",
       viewCase: "Fall ansehen",
@@ -32,7 +39,9 @@ export const de = {
         location: "Ort",
         type: "Art",
         category: "Kategorie",
-        goal: "Ziel des Kunden",
+        goal: "Aufgabe",
+        services: "Leistungen",
+        results: "Ergebnisse",
         created: "Was wir umgesetzt haben",
         deliverables: "Lieferumfang",
         timeline: "Zeitrahmen",
@@ -56,7 +65,7 @@ export const de = {
     },
     empty: "Ausgewählte Projekte folgen in Kürze.",
     gallery: {
-      all: "All",
+      all: "Alle",
       filters: "Projekte filtern",
       play: "Video ansehen",
       close: "Schließen",
@@ -68,14 +77,13 @@ export const de = {
   portfolio: {
     label: "PORTFOLIO",
     title: "Portfolio",
-    intro:
-      "Ausgewählte Filme aus Drone, Weddings & Events, Social Media und Commercial.",
+    intro: "Ausgewählte Arbeiten aus allen sechs Bereichen.",
   },
   why: {
     label: "WARUM FRAME NO. 9",
     title: "Different perspectives.\nOne creative vision.",
     closing: "Your vision.\nOur perspective.",
-    lead: "FRAME NO. 9 verbindet kreatives Denken, einen kinematografischen Ansatz und moderne Technologie zu individuellen visuellen Geschichten.",
+    lead: "Kreatives Denken, filmische Handschrift, moderne Technik – Bildwelten, die zu deiner Marke passen.",
     items: [
       {
         title: "Cinematic Storytelling",
@@ -121,8 +129,8 @@ export const de = {
         label: "PHILOSOPHIE",
         title: "Kreativität trifft Strategie.",
         text: [
-          "Gute Bilder entstehen nicht zufällig. Hinter jedem Projekt steht ein klarer Gedanke: Was soll gesagt werden, wem und mit welchem Gefühl?",
-          "Deshalb denken wir Kreativität und Strategie zusammen. Die Idee gibt dem Bild Richtung, die Strategie gibt der Idee Wirkung – Content, der bewegt.",
+          "Gute Bilder entstehen nicht zufällig: Was soll gesagt werden, wem und mit welchem Gefühl?",
+          "Die Idee gibt dem Bild Richtung, die Strategie gibt der Idee Wirkung.",
         ],
       },
       perspective: {
@@ -154,7 +162,7 @@ export const de = {
       process: {
         label: "VON DER IDEE ZUR UMSETZUNG",
         title: "From idea to execution.",
-        text: "Am Anfang steht das Gespräch: Wir verstehen dein Projekt und deine Marke. Daraus entwickeln wir Konzept und visuelle Richtung, produzieren mit Kamera und Drohne und liefern geschnittenes, farblich abgestimmtes Material – bereit für deine Kanäle.",
+        text: "Gespräch, Konzept, Produktion, fertiger Content – bereit für deine Kanäle.",
         link: "Unseren Ablauf ansehen",
       },
       closing: {
@@ -167,6 +175,15 @@ export const de = {
     label: "WAS WIR TUN",
     title: "Creative solutions.\nUnique perspectives.",
     more: "Mehr erfahren",
+    detail: {
+      back: "Alle Leistungen",
+      offerings: "Leistungen",
+      related: "Ausgewählte Projekte",
+      noProjects: "Projekte in dieser Kategorie folgen.",
+      cta: "Projekt anfragen",
+      ctaTitle: "Lass uns dein Projekt besprechen.",
+      listLabel: "Alle Leistungen",
+    },
   },
   process: {
     label: "ABLAUF",
@@ -174,25 +191,25 @@ export const de = {
     steps: [
       {
         title: "Discover",
-        text: "Wir verstehen dein Projekt, deine Ziele, deine Marke und deine Werte.",
+        text: "Wir verstehen Projekt, Ziele und Marke.",
       },
       {
         title: "Create",
-        text: "Wir entwickeln das kreative Konzept, die visuelle Richtung und planen die Produktion.",
+        text: "Konzept, visuelle Richtung, Planung.",
       },
       {
         title: "Produce",
-        text: "Professionelle Aufnahmen, visuelles Storytelling und die Umsetzung des Konzepts.",
+        text: "Aufnahmen und Umsetzung des Konzepts.",
       },
       {
         title: "Deliver",
-        text: "Schnitt, Color Grading, Sounddesign, finale Bearbeitung und Übergabe des Materials.",
+        text: "Schnitt, Color Grading, Sound, Übergabe.",
       },
     ],
   },
   contact: {
     title: "Have a vision?\nLet's bring it to life.",
-    text: "Ob Werbefilm, professionelle Drohnenaufnahmen, Hochzeit, Event oder kreative Kampagne – jedes Projekt beginnt mit einem Gespräch.",
+    text: "Strategie, Social Media, Foto, Film oder Drohne – jedes Projekt beginnt mit einem Gespräch.",
     slogan: "Let's create something remarkable.",
     direct: "Direkt erreichbar",
     email: "E-Mail",
@@ -214,10 +231,12 @@ export const de = {
       successTitle: "Danke für deine Nachricht.",
       successText: "Wir melden uns so schnell wie möglich bei dir.",
       types: [
-        "Drone & Aerial Cinematography",
+        "Social Media & Strategy",
+        "Hotels & Hospitality",
+        "Business & Commercial",
         "Weddings & Events",
-        "Social Media & Creative Strategy",
-        "Commercial & Brand Films",
+        "Drone & Aerial",
+        "Photo & Video Production",
         "Sonstiges",
       ],
       errors: {

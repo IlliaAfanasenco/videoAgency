@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { pageMetadata } from "@/lib/seo";
 import { isLocale, locales, getMessages } from "@/lib/i18n";
 import { getCase, getCases } from "@/data/cases";
 import { Header } from "@/components/layout/Header";
@@ -23,10 +24,12 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const item = getCase(slug);
   if (!isLocale(locale) || !item) notFound();
-  return {
-    title: `${item.title} | FRAME NO. 9`,
-    description: item.summary[locale],
-  };
+  return pageMetadata({
+    locale,
+    path: `/work/${slug}`,
+    title: item.title,
+    description: item.summary?.[locale],
+  });
 }
 
 export default async function CasePage({ params }: { params: Params }) {

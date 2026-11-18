@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import type { Messages } from "@/messages/de";
-import type { Locale } from "@/lib/i18n";
+import { locales, type Locale } from "@/lib/i18n";
 import { Logo } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
 import { gsap } from "@/lib/gsap";
@@ -71,20 +71,36 @@ export function Header({
       opener?.focus();
     };
   }, [open]);
-  const languages = (
-    <div className="flex items-center gap-3 text-[10px]">
-      {(["de", "en"] as const).map((l) => (
+  const languages = (mobile: boolean) => (
+    <div
+      role="group"
+      aria-label={t.language}
+      className={
+        mobile
+          ? "grid grid-cols-4 gap-2 text-xs"
+          : "flex items-center gap-1 text-[10px]"
+      }
+    >
+      {locales.map((l) => (
         <a
           key={l}
           href={`/${l}${path}`}
           lang={l}
           hrefLang={l}
           aria-current={locale === l ? "page" : undefined}
-          className={
+          className={`${
+            mobile
+              ? "flex min-h-11 items-center justify-center border"
+              : "flex min-h-8 min-w-7 items-center justify-center px-1"
+          } tracking-[0.12em] transition ${
             locale === l
-              ? "text-white"
-              : "text-white/40 transition hover:text-white"
-          }
+              ? mobile
+                ? "border-white text-white"
+                : "text-white"
+              : mobile
+                ? "border-white/15 text-white/50 hover:text-white"
+                : "text-white/40 hover:text-white"
+          }`}
         >
           {l.toUpperCase()}
         </a>
@@ -111,7 +127,7 @@ export function Header({
           ))}
         </nav>
         <div className="hidden items-center gap-7 xl:flex">
-          {languages}
+          {languages(false)}
           <Button
             href={`${base}#contact`}
             className="min-h-9 px-4 py-2 text-[10px]"
@@ -163,7 +179,9 @@ export function Header({
             </a>
           ))}
         </nav>
-        <div className="mt-12 border-t border-white/15 pt-7">{languages}</div>
+        <div className="mt-12 border-t border-white/15 pt-7">
+          {languages(true)}
+        </div>
       </dialog>
     </header>
   );

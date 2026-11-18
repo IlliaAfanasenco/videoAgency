@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { pageMetadata } from "@/lib/seo";
 import { isLocale, getMessages } from "@/lib/i18n";
 import { getProjects } from "@/data/projects";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Motion } from "@/components/animation/Motion";
 import { Heading, SectionLabel } from "@/components/ui/SectionLabel";
-import { ProjectGallery } from "@/components/ui/ProjectGallery";
+import { getCases } from "@/data/cases";
+import { PortfolioBrowser } from "@/components/ui/PortfolioBrowser";
 
 export async function generateMetadata({
   params,
@@ -16,7 +18,12 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const t = getMessages(locale);
-  return { title: `${t.portfolio.title} | FRAME NO. 9` };
+  return pageMetadata({
+    locale,
+    path: "/portfolio",
+    title: t.portfolio.title,
+    description: t.portfolio.intro,
+  });
 }
 
 export default async function PortfolioPage({
@@ -47,18 +54,13 @@ export default async function PortfolioPage({
             {t.portfolio.intro}
           </p>
         </div>
-        {projects.length > 0 ? (
-          <ProjectGallery
-            projects={projects}
-            locale={locale}
-            labels={t.work.gallery}
-            filterable
-          />
-        ) : (
-          <p className="border border-white/10 px-6 py-12 text-sm text-white/55">
-            {t.work.empty}
-          </p>
-        )}
+        <PortfolioBrowser
+          cases={getCases()}
+          projects={projects}
+          locale={locale}
+          labels={t.work.gallery}
+          sampleLabel={t.work.cases.sample}
+        />
       </main>
       <Footer t={t} locale={locale} />
     </Motion>

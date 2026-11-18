@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { pageMetadata } from "@/lib/seo";
 import { isLocale, getMessages } from "@/lib/i18n";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -15,7 +16,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  return { title: `${getMessages(locale).about.page.meta} | FRAME NO. 9` };
+  const t = getMessages(locale);
+  return pageMetadata({
+    locale,
+    path: "/about",
+    title: t.about.page.meta,
+    description: t.about.slogan,
+  });
 }
 
 export default async function AboutPage({

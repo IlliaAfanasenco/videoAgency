@@ -25,7 +25,7 @@ export default async function Home({
       <main id="main-content" tabIndex={-1}>
         <Hero t={t} />
         <AboutSection t={t} locale={locale} />
-        <ServicesSection t={t} />
+        <ServicesSection t={t} locale={locale} />
         <SelectedWorkSection t={t} locale={locale} />
         <ProcessSection t={t} />
         <WhyFrameSection t={t} />

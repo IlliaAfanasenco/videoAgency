@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import localFont from "next/font/local";
 import { isLocale, locales, getMessages } from "@/lib/i18n";
+import { pageMetadata } from "@/lib/seo";
 import "../globals.css";
 const geist = localFont({
   src: [
@@ -29,47 +30,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  const title =
-    locale === "de"
-      ? "FRAME NO. 9 | Creative Agency für Video, Drohne & Social Media"
-      : "FRAME NO. 9 | Creative Agency for Video, Drone & Social Media";
-  const description =
-    locale === "de"
-      ? "FRAME NO. 9 ist eine Creative Agency: cinematische Videoproduktion, Drohnenaufnahmen, Hochzeiten & Events, Social Media und Markenfilme."
-      : "FRAME NO. 9 is a creative agency: cinematic video production, drone footage, weddings & events, social media and brand films.";
-  const origin = process.env.NEXT_PUBLIC_SITE_URL;
-  return {
-    title,
-    description,
-    ...(origin
-      ? {
-          metadataBase: new URL(origin),
-          alternates: {
-            canonical: `/${locale}`,
-            languages: { de: "/de", en: "/en", "x-default": "/de" },
-          },
-        }
-      : {}),
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      siteName: "FRAME NO. 9",
-      locale: locale === "de" ? "de_DE" : "en_GB",
-      ...(origin
-        ? {
-            images: [
-              {
-                url: "/videos/hero-loop-desktop-poster.jpg",
-                width: 1920,
-                height: 1080,
-              },
-            ],
-          }
-        : {}),
-    },
-    robots: { index: Boolean(origin), follow: Boolean(origin) },
-  };
+  return pageMetadata({ locale });
 }
 export default async function LocaleLayout({
   children,
